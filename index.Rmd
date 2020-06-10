@@ -63,7 +63,7 @@ Visualizing probability distributions across bivariate cyclic temporal granulari
 
 class: top left 
 
-# Refresher slide
+# Refresher slide: Linear to cyclic
 
 .pull-left[
 .checked[
@@ -72,7 +72,7 @@ class: top left
 
 - Multiple observations for each level of cyclic granularity
 
-- Distribution of measured variables
+- summarize distribution of measured variables
 ]
 ]
 ]
@@ -83,36 +83,53 @@ class: top left
 ```
 ]
 ---
+class: top left 
 
+# Refresher slide: Linear to cyclic
 
+.pull-left[
+.checked[
+.smaller[
+- Cyclic time granularities: exploring different periodicities e.g. hour-of-day, day-of-month or  hour-of-week, day-of-semester
+
+- Multiple observations for each level of cyclic granularity
+
+- summarize distribution of measured variables
+]
+]
+]
+
+.pull-right[
 ```{r allplot, animation.hook="gifski"}
 
 ```
 ]
 ---
-class:center, top
+class: top left
 
-# Data structure and Graphical mapping
+# Refresher slide: Data structure and Graphical mapping
 
-.pull-left[
-```{r data structure, out.width="100%"}
+.left-column[
+.checked[
+- extension of tsibble data structure
+- choose any two cyclic granularity
+- .smaller[
+$C_i = \{A_1, A_2, \dots, A_K\}$
+]
+- .smaller[
+$C_j = \{B_1, B_2, \dots, B_L\}$
+]
+- graphical mapping $(C_i, C_j, v)$
+]
+]
+
+.right-column[
+
+```{r graphical map, out.width="90%"}
+
 ```
 
-
-```{r blank graph, out.width="100%"}
-```
-
 ]
-
-.pull-right[
-- extention of tsibble data structure
-- index: ordering from past to future
-- key: observational units over time
-]
-
-
-]
-
 ---
 class:left, top
 
@@ -133,12 +150,15 @@ class:left, top
 ]
 
 .pull-right[
+```{r clash, out.height="50%"}
+```
 
-```{r noclash, out.width="100%"}
+```{r noclash, out.height="50%"}
 ```
 ]
 
 ---
+class: top left 
 
 # Rank these graphs in descending order <br> of how interesting they are?
 
@@ -152,11 +172,12 @@ class:left, top
 ```
 ]
 
-<!-- ```{r countdown} -->
+```{r countdown}
 
-<!-- ``` -->
+```
 
 ---
+class: top left 
 
 # A couple or more reasons <br> why you mentally ranked them like that?
 
@@ -170,13 +191,9 @@ class:left, top
 ```
 ]
 
-<!-- ```{r countdown2} -->
+```{r countdown2}
+```
 
-<!-- ``` -->
-
-<!-- ?? -->
-<!-- Give four graphs to show what you mean? -->
-<!-- Ask them to rank these four graphs? Given a choice which ones you would want to see? -->
 ---
 
 # Formulating ideas (MMoPD)
@@ -191,52 +208,7 @@ class:left, top
 
 # Choosing threshold to further screen the best pairs for visualization
 
-| facets/x-axis     	| A_1  	| A_2  	| A_3  	| .. 	| .. 	| A_K  	|
-|-----	|------	|------	|------	|----	|----	|------	|
-| B_1 	| p_11 	| p_12 	| p_13 	| .. 	| .. 	| p_1K 	|
-| B_2 	|      	|      	|      	|    	|    	|      	|
-| B_3 	|      	|      	|      	|    	|    	|      	|
-| ..  	|      	|      	|      	|    	|    	|      	|
-| ..  	|      	|      	|      	|    	|    	|      	|
-| B_L 	| p_L1 	| p_L2 	| p_L3 	| .. 	| .. 	| p_LK 	|
-
-
-$H_{01}: p_{11} = p_{21} = \ldots = p_{L1}$  
-$H_{02}: p_{12} = p_{22} = \ldots = p_{L2}$  
-\vdots
-$H_{0K}: p_{1K} = p_{2K} = \ldots = p_{LK}$  
-
-
-$m$ = $L \choose 2$ (unordered)  
-$m$ = $L-1$ (ordered)  
-
-|  facets/distances	| A_1  	| A_2  	| A_3  	| .. 	| .. 	| A_K  	|
-|------------------	|------	|------	|------	|----	|----	|------	|
-| d_1              	| d_11 	| d_12 	| d_13 	| .. 	| .. 	| d_1K 	|
-| d_2              	|      	|      	|      	|    	|    	|      	|
-| d_3              	|      	|      	|      	|    	|    	|      	|
-| ..               	|      	|      	|      	|    	|    	|      	|
-| ..               	|      	|      	|      	|    	|    	|      	|
-| d_m              	| d_m1 	| d_m2 	| d_m3 	 .. 	| .. 	| d_mK 	|
-
-$H_{01}: d_{11} = d_{21} = \ldots = d_{m1} = 0$  
-$H_{02}: d_{12} = d_{22} = \ldots = d_{m2} = 0$  
-\vdots
-$H_{0K}: d_{1K} = d_{2K} = \ldots = d_{mK} = 0$  
-
-| facets/max-dist 	| A_1       	| A_2       | .. 	| .. 	| A_K       	|
-|-----------------	|-----------	|-----------	|-----------	|----	|----	|-----------	|
-| max-dist        	| max(d_11, .., dm1) 	| max(d_12, ...d_m2) 	| .. 	| .. 	| max(d_1K,...d_mK) 	|
-
-
-$H_{01}: max(d_{11}, .., d_{m1}) = 0$  
-$H_{02}: max(d_{12}, ...d_{m2})  = 0$  
-\vdots
-$H_{0K}: max(d_{1K},...d_{mK}) = 0$  
-
-Conduct permutation tests
-
----# Results
+- Conduct permutation tests
 
 
 
@@ -254,10 +226,24 @@ Conduct permutation tests
 
 
 
-## Normalization
- 
- * Maximum is more if number of levels is more
- * Distribution of maximum
- * norming constant depend on underlying distribution of distances
- * Median goes at the rate of log(n) as n goes to infinity
+<!-- ## Normalization -->
+
+<!--  * Maximum is more if number of levels is more -->
+<!--  * Distribution of maximum -->
+<!--  * norming constant depend on underlying distribution of distances -->
+<!--  * Median goes at the rate of log(n) as n goes to infinity -->
+<!-- --- -->
+
+
 ---
+class: top left
+
+
+# Results
+
+```{r rank harmony}
+
+```
+
+
+# Thank you

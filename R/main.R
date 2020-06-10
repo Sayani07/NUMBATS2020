@@ -13,6 +13,7 @@ library(ggpubr)
 library(lvplot)
 library(magrittr)
 library(countdown)
+library(gghdr)
 #remotes::install_github("njtierney/palap")
 #library(palap)
 sm <- smart_meter10 %>%
@@ -78,6 +79,10 @@ knitr::include_graphics("images/vic_struc.png")
 ##----data structure
 
 knitr::include_graphics("images/tsibble_struc.png")
+
+##----graphical map
+
+knitr::include_graphics("images/graphical_map.png")
 
 
 ##----noclash
@@ -157,3 +162,126 @@ ggarrange(p1, p3, nrow = 2, labels = c("a", "c"))
 ##----question4
 
 ggarrange(p2, p4, nrow = 2, labels = c("b", "d"))
+
+
+
+##----allplot
+
+# pbox <- smart_meter50 %>% 
+#   create_gran("hour_day") %>% 
+#   filter(hour_day %in% c(20, 10, 2, 15)) %>% 
+#   ggplot(aes(x = hour_day, y = log(general_supply_kwh))) +
+#   geom_boxplot() + ylab("") + xlab("")
+# 
+# 
+# pviolin <- smart_meter50 %>% 
+#   create_gran("hour_day") %>% 
+#   filter(hour_day %in% c(20, 10, 2, 15)) %>% 
+#   ggplot(aes(x = hour_day, y = log(general_supply_kwh))) +
+#   geom_violin() + ylab("") + xlab("")
+#   
+# plv <- smart_meter50 %>% 
+#   create_gran("hour_day") %>% 
+#   filter(hour_day %in% c(20, 10, 2, 15)) %>% 
+#   ggplot(aes(x = hour_day, y = log(general_supply_kwh))) + 
+#   geom_lv(aes(fill = ..LV..), outlier.colour = "red", outlier.shape = 1) +
+#   ylab("") + xlab("") + theme(legend.position = "None") 
+
+
+mpg <- mpg %>% 
+  filter (class %in% c("compact", "midsize", "suv","minivan")) %>% 
+  mutate(cls = 
+           case_when(
+             class == "compact" ~ "A",
+             class == "midsize" ~ "B",
+             class == "suv" ~ "C",
+             class == "minivan"  ~ "D"))
+
+pbox <- ggplot(mpg, aes(cls, hwy)) + 
+  geom_boxplot() + ylab("") + xlab("") + 
+  theme(
+    axis.text = element_text(size = 16))
+
+pridge <-  ggplot(mpg, aes(hwy, cls)) + 
+  geom_density_ridges2() + 
+  xlab("") + 
+  ylab("") + theme(
+    axis.text = element_text(size = 14))
+
+pviolin <-  ggplot(mpg, aes(cls, hwy)) + 
+  geom_violin() + ylab("") + xlab("")+ theme(
+    axis.text = element_text(size = 14))
+
+plv <-  ggplot(mpg, aes(cls, hwy)) + 
+  geom_lv(aes(fill = ..LV..), outlier.colour = "red", outlier.shape = 1) +
+  ylab("") + xlab("") +  xlab("") + ylab("")+  theme(legend.position = "bottom", legend.text = element_text(size=14)) +  scale_fill_brewer(palette = "Dark2")
+
+p4_quantile <- mpg %>% 
+  group_by(cls) %>%  do({
+    x <- .$hwy
+    map_dfr(
+      .x = c(0.25, 0.5, 0.75, 0.9),
+      .f = ~ tibble(
+        Quantile = .x,
+        Value = quantile(x, probs = .x, na.rm = TRUE)
+      )
+    )
+  })
+
+pquant <- p4_quantile %>% ggplot(aes(x = cls, y = Value, group = Quantile,  col = as.factor(Quantile))) + geom_line() +   xlab("") + ylab("") + theme(legend.position = "bottom") + scale_color_brewer(palette = "Dark2") +   ylab("") + xlab("")  + guides(color = guide_legend(title = "quantiles"))+  theme(legend.position = "bottom", legend.text=element_text(size=16))
+
+phdr <- ggplot(data = mpg,
+               aes(y = hwy, fill = cls)) + 
+  geom_hdr_boxplot(all.modes = FALSE, prob = c(0.5, 0.9)) +
+  ylab("") +
+  xlab("") + theme(legend.position = "bottom") + scale_fill_brewer(palette = "Dark2")
+
+
+pbox
+pridge
+pviolin
+plv
+pquant
+phdr
+
+
+# ggarrange(pbox, pviolin, pridge, pquant, plv,  phdr, nrow = 2, ncol = 3, labels = c("box", "violin", "ridge","quantile", "letter-value",  "hdr-box"))
+
+
+
+##----linear2cyclic
+
+load("data/sm_cust50.Rdata")
+
+smart_meter50 <- sm_cust50 %>% select(customer_id, 
+                                      reading_datetime,
+                                      general_supply_kwh, 
+                                      everything())
+
+data_cust1 <- smart_meter50 %>% filter(customer_id == 10017936)
+
+data_cust1%>% ggplot() + geom_line(aes(x =reading_datetime, y = general_supply_kwh), color = "#1B9E77")+ theme(legend.position = "bottom") + ylab("")
+
+
+smart_meter50 %>%
+  filter(customer_id==10018250) %>%
+  mutate(hour_day = hour(reading_datetime)) %>% 
+  ggplot() + geom_point(aes(x = hour_day, 
+                            y = general_supply_kwh), color = "#1B9E77") + 
+  theme_remark() + ylab("")
+
+##----rank harmony
+
+sm <- smart_meter10 %>%
+filter(customer_id %in% c(10017936))
+harmonies <- sm %>%
+harmony(ugran = "month",
+        filter_in = "wknd_wday",
+        filter_out = c("hhour", "fortnight"))
+ .data = sm
+ response  = "general_supply_kwh"
+ harmony_tbl =  harmonies
+ smart_harmony <- .data %>% rank_harmony(harmony_tbl = harmonies,
+ response = "general_supply_kwh", dist_ordered = FALSE)
+ 
+smart_harmony %>% knitr::kable(format = "html")

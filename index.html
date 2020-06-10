@@ -7,6 +7,8 @@
     <link href="libs/remark-css-0.0.1/ninjutsu.css" rel="stylesheet" />
     <link href="libs/font-awesome-animation-1.0/font-awesome-animation-emi.css" rel="stylesheet" />
     <script src="libs/fontawesome-5.0.13/js/fontawesome-all.min.js"></script>
+    <link href="libs/countdown-0.3.5/countdown.css" rel="stylesheet" />
+    <script src="libs/countdown-0.3.5/countdown.js"></script>
     <!--
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> 
     -->
@@ -100,46 +102,69 @@ Visualizing probability distributions across bivariate cyclic temporal granulari
 
 ---
 
-class: refresher middle
+class: top left 
 
-# Refresher slide
+# Refresher slide: Linear to cyclic
 
-## Cyclic time granularities - exploring different periodicities 
 .pull-left[
-Hierarchy
-&lt;table style="border-collapse:collapse;border-spacing:0" class="tg"&gt;&lt;thead&gt;&lt;tr&gt;&lt;th style="border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal"&gt;half-hour&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td style="border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal"&gt;hour&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal"&gt;day&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal"&gt;week&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal"&gt;month&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal"&gt;semester&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+.checked[
+.smaller[
+- Cyclic time granularities: exploring different periodicities e.g. hour-of-day, day-of-month or  hour-of-week, day-of-semester
+
+- Multiple observations for each level of cyclic granularity
+
+- summarize distribution of measured variables
+]
+]
 ]
 
 .pull-right[
-
-- single-order-up 
-&lt;br&gt; .smaller[e.g. hour-of-day, day-of-month]
-- mutliple-order-up
-&lt;br&gt; .smaller[e.g. hour-of-week, day-of-semester]
+![](index_files/figure-html/linear2cyclic-.gif)&lt;!-- --&gt;
 ]
 ---
-class::refresher
-class:center, top
+class: top left 
 
-# Data structure and Graphical mapping
+# Refresher slide: Linear to cyclic
 
 .pull-left[
-&lt;img src="images/tsibble_struc.png" width="100%" /&gt;
+.checked[
+.smaller[
+- Cyclic time granularities: exploring different periodicities e.g. hour-of-day, day-of-month or  hour-of-week, day-of-semester
 
+- Multiple observations for each level of cyclic granularity
 
-&lt;img src="images/vic_struc.png" width="100%" /&gt;
-
+- summarize distribution of measured variables
+]
+]
 ]
 
 .pull-right[
-- extention of tsibble data structure
-- index: ordering from past to future
-- key: observational units over time
+![](index_files/figure-html/allplot-.gif)&lt;!-- --&gt;
+]
+---
+class: top left
+
+# Refresher slide: Data structure and Graphical mapping
+
+.left-column[
+.checked[
+- extension of tsibble data structure
+- choose any two cyclic granularity
+- .smaller[
+`\(C_i = \{A_1, A_2, \dots, A_K\}\)`
+]
+- .smaller[
+`\(C_j = \{B_1, B_2, \dots, B_L\}\)`
+]
+- graphical mapping `\((C_i, C_j, v)\)`
+]
 ]
 
+.right-column[
+
+&lt;img src="images/graphical_map.png" width="90%" /&gt;
 
 ]
-
 ---
 class:left, top
 
@@ -161,10 +186,12 @@ class:left, top
 
 .pull-right[
 
-&lt;img src="index_files/figure-html/noclash-1.png" width="100%" /&gt;&lt;img src="index_files/figure-html/noclash-2.png" width="100%" /&gt;
+
+&lt;img src="index_files/figure-html/noclash-1.png" height="50%" /&gt;&lt;img src="index_files/figure-html/noclash-2.png" height="50%" /&gt;
 ]
 
 ---
+class: top left 
 
 # Rank these graphs in descending order &lt;br&gt; of how interesting they are?
 
@@ -176,11 +203,12 @@ class:left, top
 &lt;img src="index_files/figure-html/question2-1.png" width="100%" /&gt;
 ]
 
-&lt;!-- ```{r countdown} --&gt;
-
-&lt;!-- ``` --&gt;
+<div class="countdown" id="timer_5ee123fe" style="top:0;left:0;padding:10px;font-size:1em;" data-warnwhen="0">
+<code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
 
 ---
+class: top left 
 
 # A couple or more reasons &lt;br&gt; why you mentally ranked them like that?
 
@@ -192,13 +220,10 @@ class:left, top
 &lt;img src="index_files/figure-html/question4-1.png" width="100%" /&gt;
 ]
 
-&lt;!-- ```{r countdown2} --&gt;
+<div class="countdown" id="timer_5ee12414" style="top:0;left:0;padding:10px;font-size:1em;" data-warnwhen="0">
+<code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
 
-&lt;!-- ``` --&gt;
-
-&lt;!-- ?? --&gt;
-&lt;!-- Give four graphs to show what you mean? --&gt;
-&lt;!-- Ask them to rank these four graphs? Given a choice which ones you would want to see? --&gt;
 ---
 
 # Formulating ideas (MMoPD)
@@ -213,52 +238,7 @@ class:left, top
 
 # Choosing threshold to further screen the best pairs for visualization
 
-| facets/x-axis     	| A_1  	| A_2  	| A_3  	| .. 	| .. 	| A_K  	|
-|-----	|------	|------	|------	|----	|----	|------	|
-| B_1 	| p_11 	| p_12 	| p_13 	| .. 	| .. 	| p_1K 	|
-| B_2 	|      	|      	|      	|    	|    	|      	|
-| B_3 	|      	|      	|      	|    	|    	|      	|
-| ..  	|      	|      	|      	|    	|    	|      	|
-| ..  	|      	|      	|      	|    	|    	|      	|
-| B_L 	| p_L1 	| p_L2 	| p_L3 	| .. 	| .. 	| p_LK 	|
-
-
-`\(H_{01}: p_{11} = p_{21} = \ldots = p_{L1}\)`  
-`\(H_{02}: p_{12} = p_{22} = \ldots = p_{L2}\)`  
-\vdots
-`\(H_{0K}: p_{1K} = p_{2K} = \ldots = p_{LK}\)`  
-
-
-`\(m\)` = `\(L \choose 2\)` (unordered)  
-`\(m\)` = `\(L-1\)` (ordered)  
-
-|  facets/distances	| A_1  	| A_2  	| A_3  	| .. 	| .. 	| A_K  	|
-|------------------	|------	|------	|------	|----	|----	|------	|
-| d_1              	| d_11 	| d_12 	| d_13 	| .. 	| .. 	| d_1K 	|
-| d_2              	|      	|      	|      	|    	|    	|      	|
-| d_3              	|      	|      	|      	|    	|    	|      	|
-| ..               	|      	|      	|      	|    	|    	|      	|
-| ..               	|      	|      	|      	|    	|    	|      	|
-| d_m              	| d_m1 	| d_m2 	| d_m3 	 .. 	| .. 	| d_mK 	|
-
-`\(H_{01}: d_{11} = d_{21} = \ldots = d_{m1} = 0\)`  
-`\(H_{02}: d_{12} = d_{22} = \ldots = d_{m2} = 0\)`  
-\vdots
-`\(H_{0K}: d_{1K} = d_{2K} = \ldots = d_{mK} = 0\)`  
-
-| facets/max-dist 	| A_1       	| A_2       | .. 	| .. 	| A_K       	|
-|-----------------	|-----------	|-----------	|-----------	|----	|----	|-----------	|
-| max-dist        	| max(d_11, .., dm1) 	| max(d_12, ...d_m2) 	| .. 	| .. 	| max(d_1K,...d_mK) 	|
-
-
-`\(H_{01}: max(d_{11}, .., d_{m1}) = 0\)`  
-`\(H_{02}: max(d_{12}, ...d_{m2})  = 0\)`  
-\vdots
-`\(H_{0K}: max(d_{1K},...d_{mK}) = 0\)`  
-
-Conduct permutation tests
-
----# Results
+- Conduct permutation tests
 
 
 
@@ -276,13 +256,149 @@ Conduct permutation tests
 
 
 
-## Normalization
- 
- * Maximum is more if number of levels is more
- * Distribution of maximum
- * norming constant depend on underlying distribution of distances
- * Median goes at the rate of log(n) as n goes to infinity
+&lt;!-- ## Normalization --&gt;
+
+&lt;!--  * Maximum is more if number of levels is more --&gt;
+&lt;!--  * Distribution of maximum --&gt;
+&lt;!--  * norming constant depend on underlying distribution of distances --&gt;
+&lt;!--  * Median goes at the rate of log(n) as n goes to infinity --&gt;
+&lt;!-- --- --&gt;
+
+
 ---
+class: top left
+
+
+# Results
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; facet_variable &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; x_variable &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; facet_levels &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; x_levels &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; mean_max_variation &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; wknd_wday &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; hour_day &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 24 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5.17925 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; wknd_wday &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; day_month &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 31 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.95747 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; day_week &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; day_month &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 31 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.84796 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; week_month &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; hour_day &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 24 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.74284 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; day_week &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; hour_day &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 24 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.47300 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; hour_day &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; day_month &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 24 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 31 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.18895 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; day_month &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; hour_day &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 31 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 24 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.04213 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; day_month &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; day_week &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 31 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.12412 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; hour_day &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; day_week &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 24 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.02863 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; week_month &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; day_week &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.02182 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; day_week &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; week_month &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.01424 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; wknd_wday &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; week_month &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.01379 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; day_month &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; wknd_wday &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 31 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.01359 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; hour_day &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; week_month &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 24 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.01232 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; hour_day &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; wknd_wday &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 24 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.00879 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; week_month &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; wknd_wday &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.00684 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+# Thank you
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
