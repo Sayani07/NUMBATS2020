@@ -1,0 +1,253 @@
+---
+title: "Choosing harmonies for <br> visualizing probability distributions"
+subtitle: "Presented by Sayani Gupta"
+author: 
+date: "15th June 2020"
+email: "Sayani.Gupta@monash.edu"
+twitter: "SayaniGupta07"
+pdflink: ""
+bgimg: "images/black-yellow-time.png"
+output:
+  xaringan::moon_reader:
+    after_body: ["libs/collapseoutput.js"]
+    css:
+      - ninjutsu 
+      - "assets/animate.css"
+      - "assets/monash-logo.css"
+      - "assets/monash-brand.css"
+      - "assets/monash-fonts.css"
+      - "assets/styles.css" # small improvements
+      - "assets/custom.css" # add your own CSS here!
+      - "assets/demo.css" # this should be removed
+      - "timeline.css"
+    # [ "libs/myremark.css", "xaringan-themer.css" , "libs/font-awesome/css/fontawesome-all.css"]
+    self_contained: false
+    lib_dir: libs
+    includes:
+      in_header: "assets/custom.html"
+    mathjax: "assets/mathjax-local/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+    nature:
+      ratio: 16:9
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+
+```{r titleslide, child="components/titleslide.Rmd"}
+```
+
+---
+class: center
+
+```{r setup1, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message=FALSE, warning=FALSE, cache=TRUE,
+  dev.args=list(bg=grey(0.9), pointsize=11))
+
+knitr::read_chunk('R/main.R') 
+knitr::read_chunk('R/theme.R')
+```
+
+
+```{r load}
+
+```
+
+.animated.bounce[
+<img src="images/gravitas_sticker.png" height=280px>
+]
+
+Visualizing probability distributions across bivariate cyclic temporal granularities
+
+---
+
+class: refresher middle
+
+# Refresher slide
+
+## Cyclic time granularities - exploring different periodicities 
+.pull-left[
+Hierarchy
+<table style="border-collapse:collapse;border-spacing:0" class="tg"><thead><tr><th style="border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal">half-hour</th></tr></thead><tbody><tr><td style="border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal">hour</td></tr><tr><td style="border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal">day</td></tr><tr><td style="border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal">week</td></tr><tr><td style="border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal">month</td></tr><tr><td style="border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal">semester</td></tr></tbody></table>
+]
+
+.pull-right[
+
+- single-order-up 
+<br> .smaller[e.g. hour-of-day, day-of-month]
+- mutliple-order-up
+<br> .smaller[e.g. hour-of-week, day-of-semester]
+]
+---
+class::refresher
+class:center, top
+
+# Data structure and Graphical mapping
+
+.pull-left[
+```{r data structure, out.width="100%"}
+```
+
+
+```{r blank graph, out.width="100%"}
+```
+
+]
+
+.pull-right[
+- extention of tsibble data structure
+- index: ordering from past to future
+- key: observational units over time
+]
+
+
+]
+
+---
+class:left, top
+
+# Relationship of cyclic granularities
+
+.pull-left[
+**<span style="color:firebrick"> <i> Clashes</i>:** pairs leading to empty sets
+.x[
+* structural
+* event-based
+* build-based
+]
+
+**<span style="color:firebrick"> <i> Harmonies</i>:** pairs leading to no empty sets
+.checked[
+* aid exploratory data analysis
+]
+]
+
+.pull-right[
+
+```{r noclash, out.width="100%"}
+```
+]
+
+---
+
+# Rank these graphs in descending order <br> of how interesting they are?
+
+.pull-left[
+```{r question1, out.width="100%"}
+```
+]
+
+.pull-right[
+```{r question2, out.width="100%"}
+```
+]
+
+<!-- ```{r countdown} -->
+
+<!-- ``` -->
+
+---
+
+# A couple or more reasons <br> why you mentally ranked them like that?
+
+.pull-left[
+```{r question3, out.width="100%"}
+```
+]
+
+.pull-right[
+```{r question4, out.width="100%"}
+```
+]
+
+<!-- ```{r countdown2} -->
+
+<!-- ``` -->
+
+<!-- ?? -->
+<!-- Give four graphs to show what you mean? -->
+<!-- Ask them to rank these four graphs? Given a choice which ones you would want to see? -->
+---
+
+# Formulating ideas (MMoPD)
+
+ * Gestalt theory
+ * more x-axis levels? (Normalization)
+ * if **maximum pairwise dissimilarity** between distributions of x-axis labels is higher, graph is more interesting
+ * if **ordered** pairwise dissimilarity is more, graph is even more interesting
+ * for higher **average** ordered pairwise dissimilarity across facets, harmonies are more interesting
+
+---
+
+# Choosing threshold to further screen the best pairs for visualization
+
+| facets/x-axis     	| A_1  	| A_2  	| A_3  	| .. 	| .. 	| A_K  	|
+|-----	|------	|------	|------	|----	|----	|------	|
+| B_1 	| p_11 	| p_12 	| p_13 	| .. 	| .. 	| p_1K 	|
+| B_2 	|      	|      	|      	|    	|    	|      	|
+| B_3 	|      	|      	|      	|    	|    	|      	|
+| ..  	|      	|      	|      	|    	|    	|      	|
+| ..  	|      	|      	|      	|    	|    	|      	|
+| B_L 	| p_L1 	| p_L2 	| p_L3 	| .. 	| .. 	| p_LK 	|
+
+
+$H_{01}: p_{11} = p_{21} = \ldots = p_{L1}$  
+$H_{02}: p_{12} = p_{22} = \ldots = p_{L2}$  
+\vdots
+$H_{0K}: p_{1K} = p_{2K} = \ldots = p_{LK}$  
+
+
+$m$ = $L \choose 2$ (unordered)  
+$m$ = $L-1$ (ordered)  
+
+|  facets/distances	| A_1  	| A_2  	| A_3  	| .. 	| .. 	| A_K  	|
+|------------------	|------	|------	|------	|----	|----	|------	|
+| d_1              	| d_11 	| d_12 	| d_13 	| .. 	| .. 	| d_1K 	|
+| d_2              	|      	|      	|      	|    	|    	|      	|
+| d_3              	|      	|      	|      	|    	|    	|      	|
+| ..               	|      	|      	|      	|    	|    	|      	|
+| ..               	|      	|      	|      	|    	|    	|      	|
+| d_m              	| d_m1 	| d_m2 	| d_m3 	 .. 	| .. 	| d_mK 	|
+
+$H_{01}: d_{11} = d_{21} = \ldots = d_{m1} = 0$  
+$H_{02}: d_{12} = d_{22} = \ldots = d_{m2} = 0$  
+\vdots
+$H_{0K}: d_{1K} = d_{2K} = \ldots = d_{mK} = 0$  
+
+| facets/max-dist 	| A_1       	| A_2       | .. 	| .. 	| A_K       	|
+|-----------------	|-----------	|-----------	|-----------	|----	|----	|-----------	|
+| max-dist        	| max(d_11, .., dm1) 	| max(d_12, ...d_m2) 	| .. 	| .. 	| max(d_1K,...d_mK) 	|
+
+
+$H_{01}: max(d_{11}, .., d_{m1}) = 0$  
+$H_{02}: max(d_{12}, ...d_{m2})  = 0$  
+\vdots
+$H_{0K}: max(d_{1K},...d_{mK}) = 0$  
+
+Conduct permutation tests
+
+---# Results
+
+
+
+---
+
+# Features of MMoPD 
+
+- Designed to select the median
+- Within group variation
+- Between group variation
+- Distance between probability distribution measured through JSD only at desired quantiles
+- Assumption that this distance follows Normal distribution assymptotically
+
+<!-- give the uniform best harmory in all situations? When will fail/succeed? -->
+
+
+
+## Normalization
+ 
+ * Maximum is more if number of levels is more
+ * Distribution of maximum
+ * norming constant depend on underlying distribution of distances
+ * Median goes at the rate of log(n) as n goes to infinity
+---
