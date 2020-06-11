@@ -149,10 +149,10 @@ class: top left
 .checked[
 - extension of tsibble data structure
 - choose any two cyclic granularity
-- .smaller[
+.smaller[
 `\(C_i = \{A_1, A_2, \dots, A_K\}\)`
 ]
-- .smaller[
+.smaller[
 `\(C_j = \{B_1, B_2, \dots, B_L\}\)`
 ]
 - graphical mapping `\((C_i, C_j, v)\)`
@@ -229,20 +229,14 @@ class: top left
 
 ---
 
-# Choosing threshold to further screen the best pairs for visualization
-
-- Conduct permutation tests
-
-
-
-
----
-
 # Features of MMoPD 
 
-- Designed to select the median
-- Within group variation
-- Between group variation
+- Choosing threshold to further screen the best pairs for visualization
+- normalization
+- Conduct permutation tests
+&lt;!-- - Designed to select the median --&gt;
+&lt;!-- - Within group variation --&gt;
+&lt;!-- - Between group variation --&gt;
 - Distance between probability distribution measured through JSD only at desired quantiles
 - Assumption that this distance follows Normal distribution assymptotically
 
@@ -398,6 +392,22 @@ class: top left
 # Results
 
 &lt;img src="images/ranking.png" width="90%" /&gt;
+
+---
+class: top left
+
+
+# Results
+
+&lt;img src="images/threshold.png" width="100%" /&gt;
+
+---
+class: top left
+
+
+# Results
+
+&lt;img src="images/normalization.png" width="100%" /&gt;
 ---
 # Thank you
     </textarea>

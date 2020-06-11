@@ -159,7 +159,7 @@ p3 <- sm %>% prob_plot("wknd_wday",
                        quantile_prob = c(0.25, 0.5, 0.75), symmetric = FALSE) +
   scale_x_discrete(breaks =  seq(1, 31, 5)) + ggtitle("") + ylab("")
 
-p2 <- sm %>% prob_plot("wknd_wday", 
+p2 <- sm %>% prob_plot("week_month", 
                        "day_week",
                        plot_type = "boxplot") + ggtitle("")
 
@@ -212,7 +212,7 @@ mpg <- mpg %>%
 pbox <- ggplot(mpg, aes(cls, hwy)) + 
   geom_boxplot() + ylab("") + xlab("") + 
   theme(
-    axis.text = element_text(size = 16))  +
+    axis.text = element_text(size = 16), plot.title = element_text(size = 24))  +
   ggtitle("box")
 
 pridge <-  ggplot(mpg, aes(hwy, cls)) + 
@@ -224,12 +224,12 @@ pridge <-  ggplot(mpg, aes(hwy, cls)) +
 
 pviolin <-  ggplot(mpg, aes(cls, hwy)) + 
   geom_violin() + ylab("") + xlab("")+ theme(
-    axis.text = element_text(size = 14))+
+    axis.text = element_text(size = 14), plot.title = element_text(size = 24))+
   ggtitle("violin")
 
 plv <-  ggplot(mpg, aes(cls, hwy)) + 
   geom_lv(aes(fill = ..LV..), outlier.colour = "red", outlier.shape = 1) +
-  ylab("") + xlab("") +  xlab("") + ylab("")+  theme(legend.position = "bottom", legend.text = element_text(size=14)) +  scale_fill_brewer(palette = "Dark2")+
+  ylab("") + xlab("") +  xlab("") + ylab("")+  theme(legend.position = "bottom", legend.text = element_text(size=14), plot.title = element_text(size = 24)) +  scale_fill_brewer(palette = "Dark2")+
   ggtitle("letter-value")
 
 p4_quantile <- mpg %>% 
@@ -244,13 +244,13 @@ p4_quantile <- mpg %>%
     )
   })
 
-pquant <- p4_quantile %>% ggplot(aes(x = cls, y = Value, group = Quantile,  col = as.factor(Quantile))) + geom_line() +   xlab("") + ylab("") + theme(legend.position = "bottom") + scale_color_brewer(palette = "Dark2") +   ylab("") + xlab("")  + guides(color = guide_legend(title = "quantiles"))+  theme(legend.position = "bottom", legend.text=element_text(size=16))
+pquant <- p4_quantile %>% ggplot(aes(x = cls, y = Value, group = Quantile,  col = as.factor(Quantile))) + geom_line() +   xlab("") + ylab("") + theme(legend.position = "bottom") + scale_color_brewer(palette = "Dark2") +   ylab("") + xlab("")  + guides(color = guide_legend(title = "quantiles"))+  theme(legend.position = "bottom", legend.text=element_text(size=16), plot.title = element_text(size = 24)) + ggtitle("quantile")
 
 phdr <- ggplot(data = mpg,
                aes(y = hwy, fill = cls)) + 
   geom_hdr_boxplot(all.modes = FALSE, prob = c(0.5, 0.9)) +
   ylab("") +
-  xlab("") + theme(legend.position = "bottom") + scale_fill_brewer(palette = "Dark2")+
+  xlab("") + theme(legend.position = "bottom", plot.title = element_text(size = 24)) + scale_fill_brewer(palette = "Dark2")+
   ggtitle("hdr")
 
 
@@ -303,3 +303,12 @@ smart_harmony %>%
 ##---- ranking disclosed
 
 knitr::include_graphics("images/ranking.png")
+
+##---- threshold
+
+knitr::include_graphics("images/threshold.png")
+
+##---- normalization
+
+knitr::include_graphics("images/normalization.png")
+

@@ -113,10 +113,10 @@ class: top left
 .checked[
 - extension of tsibble data structure
 - choose any two cyclic granularity
-- .smaller[
+.smaller[
 $C_i = \{A_1, A_2, \dots, A_K\}$
 ]
-- .smaller[
+.smaller[
 $C_j = \{B_1, B_2, \dots, B_L\}$
 ]
 - graphical mapping $(C_i, C_j, v)$
@@ -190,7 +190,7 @@ class: top left
 
 ---
 
-# Formulating ideas (MMoPD)
+# Formulating ideas (MMPD)
 
  * Gestalt theory
  * more x-axis levels? (Normalization)
@@ -200,20 +200,14 @@ class: top left
 
 ---
 
-# Choosing threshold to further screen the best pairs for visualization
-
-- Conduct permutation tests
-
-
-
-
----
-
 # Features of MMoPD 
 
-- Designed to select the median
-- Within group variation
-- Between group variation
+- Choosing threshold to further screen the best pairs for visualization
+- normalization
+- Conduct permutation tests
+<!-- - Designed to select the median -->
+<!-- - Within group variation -->
+<!-- - Between group variation -->
 - Distance between probability distribution measured through JSD only at desired quantiles
 - Assumption that this distance follows Normal distribution assymptotically
 
@@ -247,6 +241,26 @@ class: top left
 # Results
 
 ```{r ranking disclosed, out.width="90%"}
+
+```
+
+---
+class: top left
+
+
+# Results
+
+```{r threshold, out.width="100%"}
+
+```
+
+---
+class: top left
+
+
+# Results
+
+```{r normalization, out.width="100%"}
 
 ```
 ---
