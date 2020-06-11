@@ -62,14 +62,14 @@ Visualizing probability distributions across bivariate cyclic temporal granulari
 
 class: top left 
 
-# Refresher slide: Linear to cyclic
+# Refresher slide: linear to cyclic
 
 .pull-left[
 .checked[
 .smaller[
-- Cyclic time granularities: exploring different periodicities e.g. hour-of-day, day-of-month or  hour-of-week, day-of-semester
+- **Cyclic time granularities:** exploring different periodicities e.g. hour-of-day, day-of-month or  hour-of-week, day-of-semester
 
-- Multiple observations for each level of cyclic granularity
+- **Multiple observations for each level of cyclic granularity**
 
 - summarize distribution of measured variables
 ]
@@ -84,16 +84,16 @@ class: top left
 ---
 class: top left 
 
-# Refresher slide: Linear to cyclic
+# Refresher slide: summarize distribution
 
 .pull-left[
 .checked[
 .smaller[
-- Cyclic time granularities: exploring different periodicities e.g. hour-of-day, day-of-month or  hour-of-week, day-of-semester
+- **Cyclic time granularities:** exploring different periodicities e.g. hour-of-day, day-of-month or  hour-of-week, day-of-semester
 
 - Multiple observations for each level of cyclic granularity
 
-- summarize distribution of measured variables
+- **summarize distribution of measured variables**
 ]
 ]
 ]
@@ -106,7 +106,7 @@ class: top left
 ---
 class: top left
 
-# Refresher slide: Data structure and Graphical mapping
+# Refresher slide: data structure and graphical mapping
 
 .left-column[
 <br>
@@ -115,6 +115,8 @@ class: top left
 -  choose any two cyclic granularities: 
 $C_i = \{A_1, A_2, \dots, A_K\}$ and $C_j = \{B_1, B_2, \dots, B_L\}$
 - graphical mapping $(C_i, C_j, v)$
+
+- ${N_C \choose 2}$ displays
 ]
 
 .right-column[
@@ -127,7 +129,7 @@ $C_i = \{A_1, A_2, \dots, A_K\}$ and $C_j = \{B_1, B_2, \dots, B_L\}$
 ---
 class:left, top
 
-# Relationship of cyclic granularities
+# Refresher slide: Relationship of cyclic granularities
 
 .pull-left[
 **<span style="color:firebrick"> <i> Clashes</i>:** pairs leading to empty sets
@@ -146,10 +148,11 @@ class:left, top
 ```
 ]
 
+Still too many harmonies for display for large $N_C$
 ---
 class: top left 
 
-# Rank these graphs in descending order <br> of how interesting they are?
+# Rank them up! <br> (most to least interesting)
 
 .pull-left[
 ```{r question1, out.width="100%"}
@@ -169,7 +172,7 @@ class: top left
 ---
 class: top left 
 
-# A couple or more reasons <br> why you mentally ranked them like that?
+# Ranking rationale?
 
 .pull-left[
 ```{r question3, out.width="100%"}
@@ -200,7 +203,7 @@ class: top left
 ---
 class: top left
 
-# Results
+# Results: Highest to lowest MMPD
 
 ```{r rank harmony}
 
@@ -210,7 +213,7 @@ class: top left
 class: top left
 
 
-# Results
+# Results: Highest to lowest MMPD
 
 ```{r ranking disclosed, out.width="90%"}
 
@@ -220,7 +223,7 @@ class: top left
 class: top left
 
 
-# Results
+# Results: Highest to lowest MMPD
 
 ```{r threshold, out.width="100%"}
 
@@ -230,10 +233,20 @@ class: top left
 class: top left
 
 
-# Results
+# Results: Highest to lowest MMPD
 
 ```{r normalization, out.width="100%"}
 
 ```
 ---
-# Thank you
+class: middle center
+
+# More Information
+
+Slides: https://sayanigupta-numbats.netlify.com/   
+
+Materials: https://github.com/Sayani07/NUMBATS2020 
+
+Slides created with <i> Rmarkdown, knitr, xaringan, xaringanthemer</i>
+
+## Thank you
