@@ -110,17 +110,12 @@ class: top left
 # Refresher slide: Data structure and Graphical mapping
 
 .left-column[
-.checked[
-- extension of tsibble data structure
-- choose any two cyclic granularity
-.smaller[
-$C_i = \{A_1, A_2, \dots, A_K\}$
-]
-.smaller[
-$C_j = \{B_1, B_2, \dots, B_L\}$
-]
+<br>
+<br>
+-  extension of tsibble data structure
+-  choose any two cyclic granularities: 
+$C_i = \{A_1, A_2, \dots, A_K\}$ and $C_j = \{B_1, B_2, \dots, B_L\}$
 - graphical mapping $(C_i, C_j, v)$
-]
 ]
 
 .right-column[
@@ -151,10 +146,12 @@ class:left, top
 
 .pull-right[
 
-```{r noclash, out.height="100%"}
+```{r clash, out.width="80%"}
+```
+
+```{r noclash, out.width="80%"}
 ```
 ]
-
 ---
 class: top left 
 
@@ -190,26 +187,35 @@ class: top left
 
 ---
 
-# Formulating ideas (MMPD)
+# Formulating ideas <br> Median Maximum Pairwise Distance (MMPD)
+
+## What did you look at?
 
  * Gestalt theory
- * more x-axis levels? (Normalization)
- * if **maximum pairwise dissimilarity** between distributions of x-axis labels is higher, graph is more interesting
- * if **ordered** pairwise dissimilarity is more, graph is even more interesting
- * for higher **average** ordered pairwise dissimilarity across facets, harmonies are more interesting
+ * within group variation?  (**maximum pairwise dissimilarity ordered/unordered** across x-axis labels)
+ * between group variation? (highest **average** within group variation over facets)
+ * higher number of levels? (choosing **normalization**)
+ * Are the variations "significant" enough to be interesting? (choosing **threshold**)
 
----
+--
 
-# Features of MMoPD 
+ <!--  between distributions of x-axis labels -->
+ <!--  **Ordered** or **unordered** -->
+ <!--  higher **average** maximum ordered pairwise dissimilarity across facets -->
+ <!-- * Choosing **normalization** to account for different levels -->
+ <!-- * Choosing **threshold** to screen those harmonies for which MMPD significantly different from zero -->
 
-- Choosing threshold to further screen the best pairs for visualization
-- normalization
-- Conduct permutation tests
-<!-- - Designed to select the median -->
-<!-- - Within group variation -->
-<!-- - Between group variation -->
-- Distance between probability distribution measured through JSD only at desired quantiles
-- Assumption that this distance follows Normal distribution assymptotically
+
+<!-- # Features of MMoPD  -->
+
+<!-- - Choosing threshold to further screen the best pairs for visualization -->
+<!-- - normalization -->
+<!-- - Conduct permutation tests -->
+<!-- <!-- - Designed to select the median --> -->
+<!-- <!-- - Within group variation --> -->
+<!-- <!-- - Between group variation --> -->
+<!-- - Distance between probability distribution measured through JSD only at desired quantiles -->
+<!-- - Assumption that this distance follows Normal distribution assymptotically -->
 
 <!-- give the uniform best harmory in all situations? When will fail/succeed? -->
 
