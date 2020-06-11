@@ -6,7 +6,7 @@ date: "15th June 2020"
 email: "Sayani.Gupta@monash.edu"
 twitter: "SayaniGupta07"
 pdflink: ""
-bgimg: "images/black-yellow-time.png"
+bgimg: "images/grey-yellow.png"
 output:
   xaringan::moon_reader:
     after_body: ["libs/collapseoutput.js"]
@@ -28,25 +28,24 @@ output:
     mathjax: "assets/mathjax-local/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
     nature:
       ratio: 16:9
-      highlightStyle: github
+      highlightStyle: solarized-light
       highlightLines: true
       countIncrementalSlides: false
 ---
 
-
-```{r titleslide, child="components/titleslide.Rmd"}
-```
-
----
-class: center
-
-```{r setup1, include=FALSE}
+```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, message=FALSE, warning=FALSE, cache=TRUE,
   dev.args=list(bg=grey(0.9), pointsize=11))
 
 knitr::read_chunk('R/main.R') 
 knitr::read_chunk('R/theme.R')
 ```
+
+```{r titleslide, child="components/titleslide.Rmd"}
+```
+
+---
+class: center
 
 
 ```{r load}
@@ -132,26 +131,21 @@ class:left, top
 
 .pull-left[
 **<span style="color:firebrick"> <i> Clashes</i>:** pairs leading to empty sets
-.x[
-* structural
-* event-based
-* build-based
-]
 
-**<span style="color:firebrick"> <i> Harmonies</i>:** pairs leading to no empty sets
-.checked[
-* aid exploratory data analysis
-]
+```{r clash, out.width="100%"}
+```
+
 ]
 
 .pull-right[
+**<span style="color:firebrick"> <i> Harmonies</i>:** pairs leading to no empty sets
 
-```{r clash, out.width="80%"}
-```
 
-```{r noclash, out.width="80%"}
+
+```{r noclash, out.width="100%"}
 ```
 ]
+
 ---
 class: top left 
 
@@ -166,6 +160,10 @@ class: top left
 ```{r question2, out.width="100%"}
 ```
 ]
+
+```{r countdown}
+
+```
 
 
 ---
@@ -183,6 +181,8 @@ class: top left
 ```
 ]
 
+```{r countdown2}
+```
 
 
 ---
@@ -197,42 +197,8 @@ class: top left
  * higher number of levels? (choosing **normalization**)
  * Are the variations "significant" enough to be interesting? (choosing **threshold**)
 
---
-
- <!--  between distributions of x-axis labels -->
- <!--  **Ordered** or **unordered** -->
- <!--  higher **average** maximum ordered pairwise dissimilarity across facets -->
- <!-- * Choosing **normalization** to account for different levels -->
- <!-- * Choosing **threshold** to screen those harmonies for which MMPD significantly different from zero -->
-
-
-<!-- # Features of MMoPD  -->
-
-<!-- - Choosing threshold to further screen the best pairs for visualization -->
-<!-- - normalization -->
-<!-- - Conduct permutation tests -->
-<!-- <!-- - Designed to select the median --> -->
-<!-- <!-- - Within group variation --> -->
-<!-- <!-- - Between group variation --> -->
-<!-- - Distance between probability distribution measured through JSD only at desired quantiles -->
-<!-- - Assumption that this distance follows Normal distribution assymptotically -->
-
-<!-- give the uniform best harmory in all situations? When will fail/succeed? -->
-
-
-
-<!-- ## Normalization -->
-
-<!--  * Maximum is more if number of levels is more -->
-<!--  * Distribution of maximum -->
-<!--  * norming constant depend on underlying distribution of distances -->
-<!--  * Median goes at the rate of log(n) as n goes to infinity -->
-<!-- --- -->
-
-
 ---
 class: top left
-
 
 # Results
 

@@ -7,6 +7,8 @@
     <link href="libs/remark-css-0.0.1/ninjutsu.css" rel="stylesheet" />
     <link href="libs/font-awesome-animation-1.0/font-awesome-animation-emi.css" rel="stylesheet" />
     <script src="libs/fontawesome-5.0.13/js/fontawesome-all.min.js"></script>
+    <link href="libs/countdown-0.3.5/countdown.css" rel="stylesheet" />
+    <script src="libs/countdown-0.3.5/countdown.js"></script>
     <script src="libs/kePrint-0.0.1/kePrint.js"></script>
     <!--
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> 
@@ -34,7 +36,8 @@ class: center, middle, inverse, title-slide
 
 
 
-background-image: url(images/black-yellow-time.png)
+
+background-image: url(images/grey-yellow.png)
 background-size: cover
 class: hide-slide-number split-70 title-slide
 count: false
@@ -87,8 +90,6 @@ Department of Econometrics and Business Statistics
 
 ---
 class: center
-
-
 
 
 
@@ -146,17 +147,12 @@ class: top left
 # Refresher slide: Data structure and Graphical mapping
 
 .left-column[
-.checked[
-- extension of tsibble data structure
-- choose any two cyclic granularity
-.smaller[
-`\(C_i = \{A_1, A_2, \dots, A_K\}\)`
-]
-.smaller[
-`\(C_j = \{B_1, B_2, \dots, B_L\}\)`
-]
+&lt;br&gt;
+&lt;br&gt;
+-  extension of tsibble data structure
+-  choose any two cyclic granularities: 
+`\(C_i = \{A_1, A_2, \dots, A_K\}\)` and `\(C_j = \{B_1, B_2, \dots, B_L\}\)`
 - graphical mapping `\((C_i, C_j, v)\)`
-]
 ]
 
 .right-column[
@@ -171,21 +167,17 @@ class:left, top
 
 .pull-left[
 **&lt;span style="color:firebrick"&gt; &lt;i&gt; Clashes&lt;/i&gt;:** pairs leading to empty sets
-.x[
-* structural
-* event-based
-* build-based
-]
 
-**&lt;span style="color:firebrick"&gt; &lt;i&gt; Harmonies&lt;/i&gt;:** pairs leading to no empty sets
-.checked[
-* aid exploratory data analysis
-]
+&lt;img src="index_files/figure-html/clash-1.png" width="100%" /&gt;
+
 ]
 
 .pull-right[
+**&lt;span style="color:firebrick"&gt; &lt;i&gt; Harmonies&lt;/i&gt;:** pairs leading to no empty sets
 
-&lt;img src="index_files/figure-html/noclash-1.png" height="100%" /&gt;
+
+
+&lt;img src="index_files/figure-html/noclash-1.png" width="100%" /&gt;
 ]
 
 ---
@@ -201,6 +193,10 @@ class: top left
 &lt;img src="index_files/figure-html/question2-1.png" width="100%" /&gt;
 ]
 
+<div class="countdown" id="timer_5ee1ea16" style="top:0;left:0;padding:10px;font-size:1em;" data-warnwhen="0">
+<code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
 
 ---
 class: top left 
@@ -215,47 +211,25 @@ class: top left
 &lt;img src="index_files/figure-html/question4-1.png" width="100%" /&gt;
 ]
 
+<div class="countdown" id="timer_5ee1ec07" style="top:0;left:0;padding:10px;font-size:1em;" data-warnwhen="0">
+<code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
 
 
 ---
 
-# Formulating ideas (MMoPD)
+# Formulating ideas &lt;br&gt; Median Maximum Pairwise Distance (MMPD)
+
+## What did you look at?
 
  * Gestalt theory
- * more x-axis levels? (Normalization)
- * if **maximum pairwise dissimilarity** between distributions of x-axis labels is higher, graph is more interesting
- * if **ordered** pairwise dissimilarity is more, graph is even more interesting
- * for higher **average** ordered pairwise dissimilarity across facets, harmonies are more interesting
-
----
-
-# Features of MMoPD 
-
-- Choosing threshold to further screen the best pairs for visualization
-- normalization
-- Conduct permutation tests
-&lt;!-- - Designed to select the median --&gt;
-&lt;!-- - Within group variation --&gt;
-&lt;!-- - Between group variation --&gt;
-- Distance between probability distribution measured through JSD only at desired quantiles
-- Assumption that this distance follows Normal distribution assymptotically
-
-&lt;!-- give the uniform best harmory in all situations? When will fail/succeed? --&gt;
-
-
-
-&lt;!-- ## Normalization --&gt;
-
-&lt;!--  * Maximum is more if number of levels is more --&gt;
-&lt;!--  * Distribution of maximum --&gt;
-&lt;!--  * norming constant depend on underlying distribution of distances --&gt;
-&lt;!--  * Median goes at the rate of log(n) as n goes to infinity --&gt;
-&lt;!-- --- --&gt;
-
+ * within group variation?  (**maximum pairwise dissimilarity ordered/unordered** across x-axis labels)
+ * between group variation? (highest **average** within group variation over facets)
+ * higher number of levels? (choosing **normalization**)
+ * Are the variations "significant" enough to be interesting? (choosing **threshold**)
 
 ---
 class: top left
-
 
 # Results
 
@@ -415,7 +389,7 @@ class: top left
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
 "ratio": "16:9",
-"highlightStyle": "github",
+"highlightStyle": "solarized-light",
 "highlightLines": true,
 "countIncrementalSlides": false
 });

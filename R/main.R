@@ -98,22 +98,11 @@ knitr::include_graphics("images/tsibble_struc.png")
 knitr::include_graphics("images/graphical_map.png")
 
 
-##----noclash
+##----clash
 
 VIC <- tsibbledata::vic_elec
 
-p11 <- VIC %>%
-  create_gran("month_year") %>%
-  filter(month_year %in% c("Jan", "Mar", "July", "Dec")) %>%
-  prob_plot("month_year", "day_week",
-            response = "Demand",
-            plot_type = "lv") + ggtitle("") + theme_remark() +
-  theme(
-    axis.text = element_text(size = 16))
-
-
-
-p12 <- VIC %>%
+VIC %>%
   create_gran("month_year") %>%
   filter(month_year %in% c("Jan", "Jul", "Nov")) %>%
   prob_plot("month_year",
@@ -122,10 +111,22 @@ p12 <- VIC %>%
             plot_type = "quantile",
             quantile_prob = c(0.1, 0.25, 0.5, 0.75, 0.9),
             symmetric = FALSE) + ggtitle("") + theme_remark() + 
-  scale_x_discrete(breaks = seq(0, 364, 20)) +
-  scale_color_brewer(palette = "Dark2")
+  scale_x_discrete(breaks = seq(0, 364, 40)) +
+  scale_color_brewer(palette = "Dark2") 
 
-ggarrange(p11, p12, nrow = 2)
+##----noclash
+
+VIC <- tsibbledata::vic_elec
+
+VIC %>%
+  create_gran("month_year") %>%
+  filter(month_year %in% c("Jan", "Mar", "July", "Dec")) %>%
+  prob_plot("month_year", "day_week",
+            response = "Demand",
+            plot_type = "lv") + ggtitle("") + theme_remark() +
+  theme(
+    axis.text = element_text(size = 16)) + 
+  scale_x_discrete(breaks = c("Sun", "Wed", "Fri"))
 
 ##----countdown
 
@@ -219,7 +220,7 @@ pridge <-  ggplot(mpg, aes(hwy, cls)) +
   geom_density_ridges2() + 
   xlab("") + 
   ylab("") + theme(
-    axis.text = element_text(size = 14))+
+    axis.text = element_text(size = 14),  plot.title = element_text(size = 24))+
   ggtitle("ridge")
 
 pviolin <-  ggplot(mpg, aes(cls, hwy)) + 
