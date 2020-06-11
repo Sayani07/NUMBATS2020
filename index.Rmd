@@ -150,10 +150,8 @@ class:left, top
 ]
 
 .pull-right[
-```{r clash, out.height="50%"}
-```
 
-```{r noclash, out.height="50%"}
+```{r noclash, out.height="100%"}
 ```
 ]
 
@@ -172,9 +170,6 @@ class: top left
 ```
 ]
 
-```{r countdown}
-
-```
 
 ---
 class: top left 
@@ -191,8 +186,7 @@ class: top left
 ```
 ]
 
-```{r countdown2}
-```
+
 
 ---
 
@@ -209,6 +203,7 @@ class: top left
 # Choosing threshold to further screen the best pairs for visualization
 
 - Conduct permutation tests
+
 
 
 
@@ -245,5 +240,14 @@ class: top left
 
 ```
 
+---
+class: top left
 
+
+# Results
+
+```{r ranking disclosed, out.width="90%"}
+
+```
+---
 # Thank you

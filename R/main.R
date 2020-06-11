@@ -29,6 +29,19 @@ harmony_tbl =  harmonies
 smart_harmony <- .data %>% rank_harmony(harmony_tbl = harmonies,
 response = "general_supply_kwh", dist_ordered = FALSE)
 
+sm <- smart_meter10 %>%
+  filter(customer_id %in% c(10017936))
+harmonies <- sm %>%
+  harmony(ugran = "month",
+          filter_in = "wknd_wday",
+          filter_out = c("hhour", "fortnight"))
+.data = sm
+response  = "general_supply_kwh"
+harmony_tbl =  harmonies
+smart_harmony <- .data %>% rank_harmony(harmony_tbl = harmonies,
+                                        response = "general_supply_kwh", dist_ordered = TRUE)
+
+
 ##----question1
 
 p1 <- sm %>% prob_plot("wknd_wday", 
@@ -41,7 +54,7 @@ p3 <- sm %>% prob_plot("wknd_wday",
                        quantile_prob = c(0.25, 0.5, 0.75), symmetric = FALSE) +
   scale_x_discrete(breaks =  seq(1, 31, 5)) + ggtitle("") + ylab("")
 
-p2 <- sm %>% prob_plot("wknd_wday", 
+p2 <- sm %>% prob_plot("week_month", 
                           "day_week",
                           plot_type = "boxplot") + ggtitle("")
 
@@ -112,8 +125,7 @@ p12 <- VIC %>%
   scale_x_discrete(breaks = seq(0, 364, 20)) +
   scale_color_brewer(palette = "Dark2")
 
-p11
-p12
+ggarrange(p11, p12, nrow = 2)
 
 ##----countdown
 
@@ -200,21 +212,25 @@ mpg <- mpg %>%
 pbox <- ggplot(mpg, aes(cls, hwy)) + 
   geom_boxplot() + ylab("") + xlab("") + 
   theme(
-    axis.text = element_text(size = 16))
+    axis.text = element_text(size = 16))  +
+  ggtitle("box")
 
 pridge <-  ggplot(mpg, aes(hwy, cls)) + 
   geom_density_ridges2() + 
   xlab("") + 
   ylab("") + theme(
-    axis.text = element_text(size = 14))
+    axis.text = element_text(size = 14))+
+  ggtitle("ridge")
 
 pviolin <-  ggplot(mpg, aes(cls, hwy)) + 
   geom_violin() + ylab("") + xlab("")+ theme(
-    axis.text = element_text(size = 14))
+    axis.text = element_text(size = 14))+
+  ggtitle("violin")
 
 plv <-  ggplot(mpg, aes(cls, hwy)) + 
   geom_lv(aes(fill = ..LV..), outlier.colour = "red", outlier.shape = 1) +
-  ylab("") + xlab("") +  xlab("") + ylab("")+  theme(legend.position = "bottom", legend.text = element_text(size=14)) +  scale_fill_brewer(palette = "Dark2")
+  ylab("") + xlab("") +  xlab("") + ylab("")+  theme(legend.position = "bottom", legend.text = element_text(size=14)) +  scale_fill_brewer(palette = "Dark2")+
+  ggtitle("letter-value")
 
 p4_quantile <- mpg %>% 
   group_by(cls) %>%  do({
@@ -234,7 +250,8 @@ phdr <- ggplot(data = mpg,
                aes(y = hwy, fill = cls)) + 
   geom_hdr_boxplot(all.modes = FALSE, prob = c(0.5, 0.9)) +
   ylab("") +
-  xlab("") + theme(legend.position = "bottom") + scale_fill_brewer(palette = "Dark2")
+  xlab("") + theme(legend.position = "bottom") + scale_fill_brewer(palette = "Dark2")+
+  ggtitle("hdr")
 
 
 pbox
@@ -272,16 +289,17 @@ smart_meter50 %>%
 
 ##----rank harmony
 
-sm <- smart_meter10 %>%
-filter(customer_id %in% c(10017936))
-harmonies <- sm %>%
-harmony(ugran = "month",
-        filter_in = "wknd_wday",
-        filter_out = c("hhour", "fortnight"))
- .data = sm
- response  = "general_supply_kwh"
- harmony_tbl =  harmonies
- smart_harmony <- .data %>% rank_harmony(harmony_tbl = harmonies,
- response = "general_supply_kwh", dist_ordered = FALSE)
- 
-smart_harmony %>% knitr::kable(format = "html")
+smart_harmony %>% 
+  rename("facet" = "facet_variable",
+         "x-axis" = "x_variable",
+         "facet levels" = "facet_levels",
+         "x levels" = "x_levels",
+         "MMPD" = "mean_max_variation") %>%  
+  knitr::kable() %>% 
+  kable_styling("striped", full_width = F) %>%
+  row_spec(1:16, color = "black", background = "white", font_size = 18) %>% 
+  row_spec(0, background = "white") 
+
+##---- ranking disclosed
+
+knitr::include_graphics("images/ranking.png")
