@@ -186,7 +186,7 @@ Still too many harmonies for display for large `\(N_C\)`
 ---
 class: top left 
 
-# Rank them up! &lt;br&gt; (most to least interesting)
+# Rank them up! Most to least interesting
 
 .pull-left[
 &lt;img src="index_files/figure-html/question1-1.png" width="100%" /&gt;
@@ -196,7 +196,7 @@ class: top left
 &lt;img src="index_files/figure-html/question2-1.png" width="100%" /&gt;
 ]
 
-<div class="countdown" id="timer_5ee1ff55" style="top:0;left:0;padding:10px;font-size:1em;" data-warnwhen="0">
+<div class="countdown" id="timer_5ee62f70" style="top:0;left:0;padding:10px;font-size:1em;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -214,14 +214,14 @@ class: top left
 &lt;img src="index_files/figure-html/question4-1.png" width="100%" /&gt;
 ]
 
-<div class="countdown" id="timer_5ee1fe0b" style="top:0;left:0;padding:10px;font-size:1em;" data-warnwhen="0">
+<div class="countdown" id="timer_5ee631c8" style="top:0;left:0;padding:10px;font-size:1em;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
 
 ---
 
-# Formulating ideas &lt;br&gt; Median Maximum Pairwise Distance (MMPD)
+# Formulating ideas 
 
 ## What did you look at?
 
@@ -233,6 +233,21 @@ class: top left
 
 ---
 class: top left
+
+# Median Maximum Pairwise Distance (MMPD)
+
+`$$\frac{median_{k \in \{1, 2, \ldots, K\}}(\operatorname*{max}_{s, t \in \{1, 2, \ldots, L\}}(\frac{JSD(p_s, p_t) - a_k}{b_k})}{log(K)}$$`
+
+- JSD is the Jensen-Shannon distances between probability distribution `\(p_s\)`
+and `\(p_t\)` of the `\(s^{th}\)` and `\(t^{th}\)` x-axis category 
+- `\(a_k\)` and `\(b_k\)` are
+the normalizing constants for the maximum pairwise distance of the `\(k^{th}\)` facet category
+- The thresholds are chosen using ordered permutation tests.
+
+
+---
+class: top left
+
 
 # Results: Highest to lowest MMPD
 

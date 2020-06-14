@@ -46,23 +46,30 @@ smart_harmony <- .data %>% rank_harmony(harmony_tbl = harmonies,
 
 p1 <- sm %>% prob_plot("wknd_wday", 
                     "week_month",
-                    plot_type = "boxplot") + ggtitle("")
+                    plot_type = "boxplot") + ggtitle("") +
+  ylab("Energy consumption (kwh)") + 
+ xlab("")
 
 p3 <- sm %>% prob_plot("wknd_wday", 
                        "day_month",
                        plot_type = "boxplot",
                        quantile_prob = c(0.25, 0.5, 0.75), symmetric = FALSE) +
-  scale_x_discrete(breaks =  seq(1, 31, 5)) + ggtitle("") + ylab("")
+  scale_x_discrete(breaks =  seq(1, 31, 5)) + ggtitle("") +
+  ylab("Energy consumption (kwh)") + 
+  xlab("")
 
 p2 <- sm %>% prob_plot("week_month", 
                           "day_week",
-                          plot_type = "boxplot") + ggtitle("")
-
+                          plot_type = "boxplot") + ggtitle("") +
+  ylab("Energy consumption (kwh)") + 
+  xlab("")
 
 
 p4 <- sm %>% prob_plot("wknd_wday", 
                           "hour_day",
-                          plot_type = "boxplot") + ggtitle("") + ylab("")
+                          plot_type = "boxplot") + ggtitle("") +
+  ylab("Energy consumption (kwh)") + 
+  xlab("")
 
 ggarrange(p1, p3, nrow = 2, labels = c("a", "c"))
 
@@ -112,7 +119,8 @@ VIC %>%
             quantile_prob = c(0.1, 0.25, 0.5, 0.75, 0.9),
             symmetric = FALSE) + ggtitle("") + theme_remark() + 
   scale_x_discrete(breaks = seq(0, 364, 40)) +
-  scale_color_brewer(palette = "Dark2") 
+  scale_color_brewer(palette = "Dark2") +
+  ylab("Energy consumption (kwh)")
 
 ##----noclash
 
@@ -126,7 +134,7 @@ VIC %>%
             plot_type = "lv") + ggtitle("") + theme_remark() +
   theme(
     axis.text = element_text(size = 16)) + 
-  scale_x_discrete(breaks = c("Sun", "Wed", "Fri"))
+  scale_x_discrete(breaks = c("Sun", "Wed", "Fri"))+  ylab("Energy consumption (kwh)")
 
 ##----countdown
 
@@ -152,23 +160,30 @@ countdown(minutes = 2,
 
 p1 <- sm %>% prob_plot("wknd_wday", 
                        "week_month",
-                       plot_type = "boxplot") + ggtitle("")
+                       plot_type = "boxplot") + ggtitle("") +
+  ylab("Energy consumption (kwh)") + 
+  xlab("")
 
 p3 <- sm %>% prob_plot("wknd_wday", 
                        "day_month",
                        plot_type = "boxplot",
                        quantile_prob = c(0.25, 0.5, 0.75), symmetric = FALSE) +
-  scale_x_discrete(breaks =  seq(1, 31, 5)) + ggtitle("") + ylab("")
+  scale_x_discrete(breaks =  seq(1, 31, 5)) + ggtitle("") +
+  ylab("Energy consumption (kwh)") + 
+  xlab("")
 
 p2 <- sm %>% prob_plot("week_month", 
                        "day_week",
-                       plot_type = "boxplot") + ggtitle("")
-
+                       plot_type = "boxplot") + ggtitle("") +
+  ylab("Energy consumption (kwh)") + 
+  xlab("")
 
 
 p4 <- sm %>% prob_plot("wknd_wday", 
                        "hour_day",
-                       plot_type = "boxplot") + ggtitle("") + ylab("")
+                       plot_type = "boxplot") + ggtitle("") +
+  ylab("Energy consumption (kwh)") + 
+  xlab("")
 
 ggarrange(p1, p3, nrow = 2, labels = c("a", "c"))
 
@@ -278,7 +293,8 @@ smart_meter50 <- sm_cust50 %>% select(customer_id,
 
 data_cust1 <- smart_meter50 %>% filter(customer_id == 10017936)
 
-data_cust1%>% ggplot() + geom_line(aes(x =reading_datetime, y = general_supply_kwh), color = "#1B9E77")+ theme(legend.position = "bottom") + ylab("")
+data_cust1%>% ggplot() + geom_line(aes(x =reading_datetime, y = general_supply_kwh), color = "#1B9E77")+ theme(legend.position = "bottom") + ylab("")+ 
+  theme_remark()
 
 
 smart_meter50 %>%

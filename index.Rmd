@@ -78,7 +78,7 @@ class: top left
 
 .pull-right[
 ```{r linear2cyclic, animation.hook="gifski"}
-
+0
 ```
 ]
 ---
@@ -152,7 +152,7 @@ Still too many harmonies for display for large $N_C$
 ---
 class: top left 
 
-# Rank them up! <br> (most to least interesting)
+# Rank them up! Most to least interesting
 
 .pull-left[
 ```{r question1, out.width="100%"}
@@ -190,7 +190,7 @@ class: top left
 
 ---
 
-# Formulating ideas <br> Median Maximum Pairwise Distance (MMPD)
+# Formulating ideas 
 
 ## What did you look at?
 
@@ -202,6 +202,21 @@ class: top left
 
 ---
 class: top left
+
+# Median Maximum Pairwise Distance (MMPD)
+
+$$\frac{median_{k \in \{1, 2, \ldots, K\}}(\operatorname*{max}_{s, t \in \{1, 2, \ldots, L\}}(\frac{JSD(p_s, p_t) - a_k}{b_k})}{log(K)}$$
+
+- JSD is the Jensen-Shannon distances between probability distribution $p_s$
+and $p_t$ of the $s^{th}$ and $t^{th}$ x-axis category 
+- $a_k$ and $b_k$ are
+the normalizing constants for the maximum pairwise distance of the $k^{th}$ facet category
+- The thresholds are chosen using ordered permutation tests.
+
+
+---
+class: top left
+
 
 # Results: Highest to lowest MMPD
 
