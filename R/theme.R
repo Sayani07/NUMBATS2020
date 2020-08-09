@@ -17,11 +17,11 @@ theme_remark <- function() {
 theme_alldist <- function() {
   theme_grey() +
     theme(
-      axis.text = element_text(size = 16),
-      strip.text = element_text(size = 16, margin = margin()),
-      axis.title = element_text(size = 16),
-      legend.title = element_text(size = 16),
-      legend.text = element_text(size = 16),
-      plot.title =  element_text(size = 16)
+      axis.text = element_text(size = 20),
+      strip.text = element_text(size = 20, margin = margin()),
+      axis.title = element_text(size = 20),
+      legend.title = element_text(size = 20),
+      legend.text = element_text(size = 20),
+      plot.title =  element_text(size = 20)
     )
 }

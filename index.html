@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Choosing harmonies for   visualizing probability distributions</title>
+    <title>Visualizing probability distributions across   bivariate cyclic temporal granularities</title>
     <meta charset="utf-8" />
     <meta name="author" content="" />
+    <meta name="date" content="2020-08-09" />
     <link href="libs/remark-css-0.0.1/ninjutsu.css" rel="stylesheet" />
     <link href="libs/font-awesome-animation-1.0/font-awesome-animation-emi.css" rel="stylesheet" />
     <script src="libs/fontawesome-5.0.13/js/fontawesome-all.min.js"></script>
-    <link href="libs/countdown-0.3.5/countdown.css" rel="stylesheet" />
-    <script src="libs/countdown-0.3.5/countdown.js"></script>
     <script src="libs/kePrint-0.0.1/kePrint.js"></script>
     <!--
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> 
@@ -27,9 +26,9 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-# Choosing harmonies for <br> visualizing probability distributions
+# Visualizing probability distributions across <br> bivariate cyclic temporal granularities
 ## Presented by Sayani Gupta
-### 15th June 2020
+### August 9, 2020
 
 ---
 
@@ -46,7 +45,7 @@ count: false
 
 &lt;br&gt;
 
-# .monash-white.outline-text[Choosing harmonies for &lt;br&gt; visualizing probability distributions]
+# .monash-white.outline-text[Visualizing probability distributions across &lt;br&gt; bivariate cyclic temporal granularities]
 
 &lt;h2 class="monash-blue2 outline-text" style="font-size: 30pt!important;"&gt;&lt;/h2&gt;
 
@@ -62,7 +61,7 @@ Department of Econometrics and Business Statistics
 
 <span>&lt;i class="fas  fa-envelope faa-float animated "&gt;&lt;/i&gt;</span>  Sayani.Gupta@monash.edu
 
-15th June 2020 @ NUMBATS Seminar | Melbourne, Australia
+August 9, 2020 @ NUMBATS Seminar | Melbourne, Australia
 
 
 
@@ -94,17 +93,9 @@ class: center
 
 
 
-.animated.bounce[
-&lt;img src="images/gravitas_sticker.png" height=280px&gt;
-]
-
-Visualizing probability distributions across bivariate cyclic temporal granularities
-
----
-
 class: top left 
 
-# Refresher slide: linear to cyclic
+# Linear to cyclic
 
 .pull-left[
 .checked[
@@ -124,7 +115,7 @@ class: top left
 ---
 class: top left 
 
-# Refresher slide: summarize distribution
+# Summarize distribution
 
 .pull-left[
 .checked[
@@ -144,7 +135,7 @@ class: top left
 ---
 class: top left
 
-# Refresher slide: data structure and graphical mapping
+# Data structure and graphical mapping
 
 .left-column[
 &lt;br&gt;
@@ -154,7 +145,7 @@ class: top left
 `\(C_i = \{A_1, A_2, \dots, A_K\}\)` and `\(C_j = \{B_1, B_2, \dots, B_L\}\)`
 - graphical mapping `\((C_i, C_j, v)\)`
 
-- `\({N_C \choose 2}\)` displays
+- `\(^{N_C}P_2\)` displays
 ]
 
 .right-column[
@@ -165,7 +156,7 @@ class: top left
 ---
 class:left, top
 
-# Refresher slide: Relationship of cyclic granularities
+# Relationship of cyclic granularities
 
 .pull-left[
 **&lt;span style="color:firebrick"&gt; &lt;i&gt; Clashes&lt;/i&gt;:** pairs leading to empty sets
@@ -184,72 +175,88 @@ class:left, top
 
 Still too many harmonies for display for large `\(N_C\)`
 ---
-class: top left 
-
-# Rank them up! Most to least interesting
+# Selecting harmonies with significant variation
 
 .pull-left[
-&lt;img src="index_files/figure-html/question1-1.png" width="100%" /&gt;
+&lt;img src="index_files/figure-html/question1-1.png" width="200%" /&gt;
 ]
 
 .pull-right[
-&lt;img src="index_files/figure-html/question2-1.png" width="100%" /&gt;
-]
-
-<div class="countdown" id="timer_5ee62f70" style="top:0;left:0;padding:10px;font-size:1em;" data-warnwhen="0">
-<code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
-</div>
-
-
+- significant differences between categories: &lt;br&gt; (a) no (b) yes
+- Gestalt theory
+- efficiently capture within and between group variation 
+- compute threshold
+ ]
 ---
-class: top left 
-
-# Ranking rationale?
+# Rank selected harmonies &lt;br&gt; Median Maximum Pairwise Distance (MMPD)
 
 .pull-left[
-&lt;img src="index_files/figure-html/question3-1.png" width="100%" /&gt;
+![](index_files/figure-html/questioncric-1.png)&lt;!-- --&gt;
+]
+.pull-right[
+- rank harmonies (b) &gt; (a)
+- distances between probability distribution through Jensen-Shannon divergences
+- normalizing constants through Fisher–Tippett–Gnedenko theorem
+]
+---
+R package `gravitas`
+
+.pull-left[
+.animated.bounce[
+&lt;img src="images/gravitas_sticker.png" height=280px&gt;
+]
 ]
 
 .pull-right[
-&lt;img src="index_files/figure-html/question4-1.png" width="100%" /&gt;
+* construction of cyclic granularities and cyclic calendar algebra 
+* check feasibility through harmony/clash
+* select significant harmonies and rank them
+* recommend prospective probability distributions 
 ]
-
-<div class="countdown" id="timer_5ee631c8" style="top:0;left:0;padding:10px;font-size:1em;" data-warnwhen="0">
-<code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
-</div>
-
-
----
-
-# Formulating ideas 
-
-## What did you look at?
-
- * Gestalt theory
- * within group variation?  (**maximum pairwise dissimilarity ordered/unordered** across x-axis labels)
- * between group variation? (highest **average** within group variation over facets)
- * higher number of levels? (choosing **normalization**)
- * Are the variations "significant" enough to be interesting? (choosing **threshold**)
-
----
-class: top left
-
-# Median Maximum Pairwise Distance (MMPD)
-
-`$$\frac{median_{k \in \{1, 2, \ldots, K\}}(\operatorname*{max}_{s, t \in \{1, 2, \ldots, L\}}(\frac{JSD(p_s, p_t) - a_k}{b_k})}{log(K)}$$`
-
-- JSD is the Jensen-Shannon distances between probability distribution `\(p_s\)`
-and `\(p_t\)` of the `\(s^{th}\)` and `\(t^{th}\)` x-axis category 
-- `\(a_k\)` and `\(b_k\)` are
-the normalizing constants for the maximum pairwise distance of the `\(k^{th}\)` facet category
-- The thresholds are chosen using ordered permutation tests.
-
-
 ---
 class: top left
 
 
-# Results: Highest to lowest MMPD
+## An example : Electricity smart meter data
+
+&lt;i&gt;&lt;small&gt;Data source&lt;/i&gt;&lt;/small&gt; : [&lt;small&gt;&lt;i&gt;Department of the Environment and Energy, Australia&lt;/i&gt;&lt;/small&gt;](https://data.gov.au/dataset/4e21dea3-9b87-4610-94c7-15a8a77907ef)
+
+
+```
+## # A tsibble: 293,874 x 3 [30m] &lt;UTC&gt;
+## # Key:       customer_id [10]
+##    customer_id reading_datetime    general_supply_kwh
+##    &lt;chr&gt;       &lt;dttm&gt;                           &lt;dbl&gt;
+##  1 10006414    2012-02-10 08:00:00              0.141
+##  2 10006414    2012-02-10 08:30:00              0.088
+##  3 10006414    2012-02-10 09:00:00              0.078
+##  4 10006414    2012-02-10 09:30:00              0.151
+##  5 10006414    2012-02-10 10:00:00              0.146
+##  6 10006414    2012-02-10 10:30:00              0.077
+##  7 10006414    2012-02-10 11:00:00              0.052
+##  8 10006414    2012-02-10 11:30:00              0.055
+##  9 10006414    2012-02-10 12:00:00              0.055
+## 10 10006414    2012-02-10 12:30:00              0.252
+## # … with 293,864 more rows
+```
+---
+
+# Cyclic granularities considered for analysis
+
+
+```
+## [1] "hour_day"   "hour_week"  "hour_month" "day_week"   "day_month" 
+## [6] "week_month" "wknd_wday"
+```
+&lt;br&gt;
+&lt;br&gt; 
+
+# Number of displays to analyze for exhaustive exploration
+
+There are `\(^{7}P_2 = 42\)` pair of granularities to look at placing one on the x-axis and the other on facet.
+---
+
+# Results: Select only harmonies (16 out of 42 selected)
 
 &lt;table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;"&gt;
  &lt;thead&gt;
@@ -259,6 +266,8 @@ class: top left
    &lt;th style="text-align:right;background-color: white !important;"&gt; facet levels &lt;/th&gt;
    &lt;th style="text-align:right;background-color: white !important;"&gt; x levels &lt;/th&gt;
    &lt;th style="text-align:right;background-color: white !important;"&gt; MMPD &lt;/th&gt;
+   &lt;th style="text-align:right;background-color: white !important;"&gt; max_pd &lt;/th&gt;
+   &lt;th style="text-align:right;background-color: white !important;"&gt; r &lt;/th&gt;
   &lt;/tr&gt;
  &lt;/thead&gt;
 &lt;tbody&gt;
@@ -267,77 +276,54 @@ class: top left
    &lt;td style="text-align:left;color: black !important;background-color: white !important;font-size: 18px;"&gt; day_month &lt;/td&gt;
    &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 7 &lt;/td&gt;
    &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 31 &lt;/td&gt;
-   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 0.42635 &lt;/td&gt;
+   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 0.06398 &lt;/td&gt;
+   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 0.49099 &lt;/td&gt;
+   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 1 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;color: black !important;background-color: white !important;font-size: 18px;"&gt; wknd_wday &lt;/td&gt;
    &lt;td style="text-align:left;color: black !important;background-color: white !important;font-size: 18px;"&gt; day_month &lt;/td&gt;
    &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 2 &lt;/td&gt;
    &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 31 &lt;/td&gt;
-   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 0.37858 &lt;/td&gt;
+   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 0.05988 &lt;/td&gt;
+   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 0.04845 &lt;/td&gt;
+   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 8 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;color: black !important;background-color: white !important;font-size: 18px;"&gt; wknd_wday &lt;/td&gt;
    &lt;td style="text-align:left;color: black !important;background-color: white !important;font-size: 18px;"&gt; hour_day &lt;/td&gt;
    &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 2 &lt;/td&gt;
    &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 24 &lt;/td&gt;
-   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 0.27490 &lt;/td&gt;
+   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 0.04361 &lt;/td&gt;
+   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 0.04102 &lt;/td&gt;
+   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 9 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;color: black !important;background-color: white !important;font-size: 18px;"&gt; day_week &lt;/td&gt;
    &lt;td style="text-align:left;color: black !important;background-color: white !important;font-size: 18px;"&gt; hour_day &lt;/td&gt;
    &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 7 &lt;/td&gt;
    &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 24 &lt;/td&gt;
-   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 0.14988 &lt;/td&gt;
+   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 0.02362 &lt;/td&gt;
+   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 0.10956 &lt;/td&gt;
+   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 5 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;color: black !important;background-color: white !important;font-size: 18px;"&gt; week_month &lt;/td&gt;
    &lt;td style="text-align:left;color: black !important;background-color: white !important;font-size: 18px;"&gt; hour_day &lt;/td&gt;
    &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 5 &lt;/td&gt;
    &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 24 &lt;/td&gt;
-   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 0.14722 &lt;/td&gt;
+   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 0.02316 &lt;/td&gt;
+   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 0.05025 &lt;/td&gt;
+   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 7 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;color: black !important;background-color: white !important;font-size: 18px;"&gt; hour_day &lt;/td&gt;
    &lt;td style="text-align:left;color: black !important;background-color: white !important;font-size: 18px;"&gt; day_month &lt;/td&gt;
    &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 24 &lt;/td&gt;
    &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 31 &lt;/td&gt;
-   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 0.10409 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;color: black !important;background-color: white !important;font-size: 18px;"&gt; day_month &lt;/td&gt;
-   &lt;td style="text-align:left;color: black !important;background-color: white !important;font-size: 18px;"&gt; day_week &lt;/td&gt;
-   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 31 &lt;/td&gt;
-   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 7 &lt;/td&gt;
-   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 0.07560 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;color: black !important;background-color: white !important;font-size: 18px;"&gt; day_month &lt;/td&gt;
-   &lt;td style="text-align:left;color: black !important;background-color: white !important;font-size: 18px;"&gt; hour_day &lt;/td&gt;
-   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 31 &lt;/td&gt;
-   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 24 &lt;/td&gt;
-   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 0.05980 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;color: black !important;background-color: white !important;font-size: 18px;"&gt; day_week &lt;/td&gt;
-   &lt;td style="text-align:left;color: black !important;background-color: white !important;font-size: 18px;"&gt; week_month &lt;/td&gt;
-   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 7 &lt;/td&gt;
-   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 5 &lt;/td&gt;
-   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 0.02696 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;color: black !important;background-color: white !important;font-size: 18px;"&gt; wknd_wday &lt;/td&gt;
-   &lt;td style="text-align:left;color: black !important;background-color: white !important;font-size: 18px;"&gt; week_month &lt;/td&gt;
+   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 0.01592 &lt;/td&gt;
+   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 0.24774 &lt;/td&gt;
    &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 2 &lt;/td&gt;
-   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 5 &lt;/td&gt;
-   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 0.02116 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;color: black !important;background-color: white !important;font-size: 18px;"&gt; hour_day &lt;/td&gt;
-   &lt;td style="text-align:left;color: black !important;background-color: white !important;font-size: 18px;"&gt; week_month &lt;/td&gt;
-   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 24 &lt;/td&gt;
-   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 5 &lt;/td&gt;
-   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 0.02099 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;color: black !important;background-color: white !important;font-size: 18px;"&gt; day_month &lt;/td&gt;
@@ -345,6 +331,26 @@ class: top left
    &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 31 &lt;/td&gt;
    &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 2 &lt;/td&gt;
    &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 0.01359 &lt;/td&gt;
+   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 0.06925 &lt;/td&gt;
+   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 6 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;color: black !important;background-color: white !important;font-size: 18px;"&gt; day_month &lt;/td&gt;
+   &lt;td style="text-align:left;color: black !important;background-color: white !important;font-size: 18px;"&gt; day_week &lt;/td&gt;
+   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 31 &lt;/td&gt;
+   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 0.01142 &lt;/td&gt;
+   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 0.11532 &lt;/td&gt;
+   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 4 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;color: black !important;background-color: white !important;font-size: 18px;"&gt; day_month &lt;/td&gt;
+   &lt;td style="text-align:left;color: black !important;background-color: white !important;font-size: 18px;"&gt; hour_day &lt;/td&gt;
+   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 31 &lt;/td&gt;
+   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 24 &lt;/td&gt;
+   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 0.00921 &lt;/td&gt;
+   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 0.16808 &lt;/td&gt;
+   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 3 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;color: black !important;background-color: white !important;font-size: 18px;"&gt; hour_day &lt;/td&gt;
@@ -352,20 +358,8 @@ class: top left
    &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 24 &lt;/td&gt;
    &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 2 &lt;/td&gt;
    &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 0.00879 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;color: black !important;background-color: white !important;font-size: 18px;"&gt; week_month &lt;/td&gt;
-   &lt;td style="text-align:left;color: black !important;background-color: white !important;font-size: 18px;"&gt; day_week &lt;/td&gt;
-   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 5 &lt;/td&gt;
-   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 7 &lt;/td&gt;
-   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 0.00753 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;color: black !important;background-color: white !important;font-size: 18px;"&gt; hour_day &lt;/td&gt;
-   &lt;td style="text-align:left;color: black !important;background-color: white !important;font-size: 18px;"&gt; day_week &lt;/td&gt;
-   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 24 &lt;/td&gt;
-   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 7 &lt;/td&gt;
-   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 0.00739 &lt;/td&gt;
+   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 0.03487 &lt;/td&gt;
+   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 10 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;color: black !important;background-color: white !important;font-size: 18px;"&gt; week_month &lt;/td&gt;
@@ -373,6 +367,53 @@ class: top left
    &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 5 &lt;/td&gt;
    &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 2 &lt;/td&gt;
    &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 0.00684 &lt;/td&gt;
+   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 0.02082 &lt;/td&gt;
+   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 13 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;color: black !important;background-color: white !important;font-size: 18px;"&gt; day_week &lt;/td&gt;
+   &lt;td style="text-align:left;color: black !important;background-color: white !important;font-size: 18px;"&gt; week_month &lt;/td&gt;
+   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 0.00429 &lt;/td&gt;
+   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 0.02242 &lt;/td&gt;
+   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 12 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;color: black !important;background-color: white !important;font-size: 18px;"&gt; wknd_wday &lt;/td&gt;
+   &lt;td style="text-align:left;color: black !important;background-color: white !important;font-size: 18px;"&gt; week_month &lt;/td&gt;
+   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 0.00337 &lt;/td&gt;
+   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 0.00257 &lt;/td&gt;
+   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 16 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;color: black !important;background-color: white !important;font-size: 18px;"&gt; hour_day &lt;/td&gt;
+   &lt;td style="text-align:left;color: black !important;background-color: white !important;font-size: 18px;"&gt; week_month &lt;/td&gt;
+   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 24 &lt;/td&gt;
+   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 0.00334 &lt;/td&gt;
+   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 0.02572 &lt;/td&gt;
+   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 11 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;color: black !important;background-color: white !important;font-size: 18px;"&gt; week_month &lt;/td&gt;
+   &lt;td style="text-align:left;color: black !important;background-color: white !important;font-size: 18px;"&gt; day_week &lt;/td&gt;
+   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 0.00120 &lt;/td&gt;
+   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 0.00296 &lt;/td&gt;
+   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 15 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;color: black !important;background-color: white !important;font-size: 18px;"&gt; hour_day &lt;/td&gt;
+   &lt;td style="text-align:left;color: black !important;background-color: white !important;font-size: 18px;"&gt; day_week &lt;/td&gt;
+   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 24 &lt;/td&gt;
+   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 0.00117 &lt;/td&gt;
+   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 0.01668 &lt;/td&gt;
+   &lt;td style="text-align:right;color: black !important;background-color: white !important;font-size: 18px;"&gt; 14 &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -380,16 +421,8 @@ class: top left
 ---
 class: top left
 
-
-# Results: Highest to lowest MMPD
-
-&lt;img src="images/ranking.png" width="90%" /&gt;
-
----
-class: top left
-
-
-# Results: Highest to lowest MMPD
+# Results: Select significant harmonies and rank them &lt;br&gt;
+(only 4 out of 16 selected)
 
 &lt;img src="images/threshold.png" width="100%" /&gt;
 
@@ -397,9 +430,11 @@ class: top left
 class: top left
 
 
-# Results: Highest to lowest MMPD
+# Results: Recommended plots for selected harmonies
 
-&lt;img src="images/normalization.png" width="100%" /&gt;
+ Many levels - quantile plot selected
+ Lower levels - boxplot selected
+
 ---
 class: middle center
 

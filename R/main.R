@@ -27,7 +27,7 @@ harmonies <- sm %>%
 response  = "general_supply_kwh"
 harmony_tbl =  harmonies
 smart_harmony <- .data %>% rank_harmony(harmony_tbl = harmonies,
-response = "general_supply_kwh", dist_ordered = FALSE)
+response = "general_supply_kwh", dist_ordered = TRUE)
 
 sm <- smart_meter10 %>%
   filter(customer_id %in% c(10017936))
@@ -73,9 +73,7 @@ p4 <- sm %>% prob_plot("wknd_wday",
 
 ggarrange(p1, p3, nrow = 2, labels = c("a", "c"))
 
-##----question2
 
-ggarrange(p2, p4, nrow = 2, labels = c("b", "d"))
 
 ##----blank graph
 # 
@@ -286,7 +284,12 @@ phdr
 
 load("data/sm_cust50.Rdata")
 
-smart_meter50 <- sm_cust50 %>% select(customer_id, 
+
+sm_cust50 <- sm_cust50 %>% 
+  tsibble::as_tsibble(regular = FALSE)
+
+smart_meter50 <-  sm_cust50 %>%
+  select(customer_id, 
                                       reading_datetime,
                                       general_supply_kwh, 
                                       everything())
@@ -311,7 +314,7 @@ smart_harmony %>%
          "x-axis" = "x_variable",
          "facet levels" = "facet_levels",
          "x levels" = "x_levels",
-         "MMPD" = "mean_max_variation") %>%  
+         "MMPD" = "MMPD") %>%  
   knitr::kable() %>% 
   kable_styling("striped", full_width = F) %>%
   row_spec(1:16, color = "black", background = "white", font_size = 18) %>% 
@@ -329,3 +332,119 @@ knitr::include_graphics("images/threshold.png")
 
 knitr::include_graphics("images/normalization.png")
 
+
+
+##----read
+gravitas::smart_meter10
+
+
+##----search_gran
+
+
+smart_meter10 %>%
+  search_gran(lowest_unit = "hour", highest_unit =  "month", 
+              filter_out = "fortnight", filter_in = "wknd_wday")
+
+
+
+##----question1
+
+p1 <- sm %>% prob_plot("wknd_wday", 
+                       "week_month",
+                       plot_type = "boxplot") + ggtitle("") +
+  ylab("") + 
+  xlab("") + theme_alldist()
+
+
+p4 <- sm %>% prob_plot("wknd_wday", 
+                       "hour_day",
+                       plot_type = "boxplot") + ggtitle("") +
+  ylab("") + 
+  xlab("") + scale_x_discrete(breaks = c(0,seq(3, 23, 3))) + 
+  theme_alldist()
+
+ggarrange(p1, p4, nrow = 2, labels = c("a", "b"))
+
+
+##----questionselect
+
+p55 <- sm %>% prob_plot("week_month", 
+                       "hour_day",
+                       plot_type = "boxplot") + ggtitle("") +
+  ylab("") + 
+  xlab("") + theme_alldist()
+
+
+ggarrange(p4, p55, nrow = 2, labels = c("a", "b")) 
+
+##----questioncric
+
+
+cricket_data <- read_rds("data/cricket_data.rds")
+
+hierarchy_model <- tibble::tibble(
+  units = c("index", "over", "inning", "match"),
+  convert_fct = c(1, 20, 2, 1))
+
+hierarchy_tbl <- hierarchy_model
+
+response <- "runs_per_over"
+
+harmonies_cric <- cricket_data %>% harmony(lgran = "over", ugran = "match", filter_in = c("lag_field", "over"), hierarchy_tbl = hierarchy_model)
+
+rank_cricket <- cricket_data %>% rank_harmony(harmony_tbl = harmonies_cric, 
+             response = response,
+             hierarchy_tbl = hierarchy_model,
+             dist_distribution = "normal")
+# 
+# cricket_data %>% 
+#   create_gran("inning_match",
+# hierarchy_tbl = hierarchy_model) %>% 
+# prob_plot("lag_field", "inning_match", 
+#           plot_type = "quantile",
+#           symmetric = FALSE,
+#           quantile_prob = c(0.25, 0.5, 0.75),
+#           hierarchy_tbl = hierarchy_model)
+# 
+# 
+# cricket_data %>% 
+#   create_gran("inning_match",
+#               hierarchy_tbl = hierarchy_model) %>% 
+#   prob_plot("lag_field","over",plot_type = "quantile", symmetric = FALSE, hierarchy_tbl = hierarchy_model)
+# 
+# cricket_data %>%
+#   filter(over!=1) %>%
+#   prob_plot("over", "lag_field",
+#             hierarchy_model,
+#             response = "run_rate",
+#             plot_type = "quantile",
+#             symmetric = FALSE,
+#             quantile_prob = c(0.25, 0.5, 0.75)) 
+
+p1cric <- cricket_data %>% 
+  create_gran("inning_match",
+              hierarchy_tbl = hierarchy_model)%>% 
+  prob_plot("lag_field", "inning_match", 
+            plot_type = "quantile",
+            response = "runs_per_over",
+            symmetric = FALSE,
+            quantile_prob = c(0.25, 0.5, 0.75),
+            hierarchy_tbl = hierarchy_model)+
+  ylab("") + 
+  xlab("") + theme_alldist()+ ggtitle("")+ scale_color_brewer(palette = "Dark2")
+
+
+p2cric <- cricket_data %>% 
+  create_gran("inning_match",
+              hierarchy_tbl = hierarchy_model) %>% 
+  prob_plot("inning_match", "lag_field", 
+            plot_type = "quantile",
+            response = "runs_per_over",
+            symmetric = FALSE,
+            quantile_prob = c(0.25, 0.5, 0.75),
+            hierarchy_tbl = hierarchy_model)+
+  ylab("") + 
+  xlab("") + theme_alldist() +ggtitle("") + scale_color_brewer(palette = "Dark2")
+
+
+ggarrange(p1cric, p2cric, nrow = 2, labels = c("a", "b")) 

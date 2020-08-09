@@ -1,8 +1,8 @@
 ---
-title: "Choosing harmonies for <br> visualizing probability distributions"
+title: "Visualizing probability distributions across <br> bivariate cyclic temporal granularities"
 subtitle: "Presented by Sayani Gupta"
 author: 
-date: "15th June 2020"
+date: "August 9, 2020"
 email: "Sayani.Gupta@monash.edu"
 twitter: "SayaniGupta07"
 pdflink: ""
@@ -52,17 +52,9 @@ class: center
 
 ```
 
-.animated.bounce[
-<img src="images/gravitas_sticker.png" height=280px>
-]
-
-Visualizing probability distributions across bivariate cyclic temporal granularities
-
----
-
 class: top left 
 
-# Refresher slide: linear to cyclic
+# Linear to cyclic
 
 .pull-left[
 .checked[
@@ -78,13 +70,12 @@ class: top left
 
 .pull-right[
 ```{r linear2cyclic, animation.hook="gifski"}
-0
 ```
 ]
 ---
 class: top left 
 
-# Refresher slide: summarize distribution
+# Summarize distribution
 
 .pull-left[
 .checked[
@@ -106,7 +97,7 @@ class: top left
 ---
 class: top left
 
-# Refresher slide: data structure and graphical mapping
+# Data structure and graphical mapping
 
 .left-column[
 <br>
@@ -116,7 +107,7 @@ class: top left
 $C_i = \{A_1, A_2, \dots, A_K\}$ and $C_j = \{B_1, B_2, \dots, B_L\}$
 - graphical mapping $(C_i, C_j, v)$
 
-- ${N_C \choose 2}$ displays
+- $^{N_C}P_2$ displays
 ]
 
 .right-column[
@@ -129,7 +120,7 @@ $C_i = \{A_1, A_2, \dots, A_K\}$ and $C_j = \{B_1, B_2, \dots, B_L\}$
 ---
 class:left, top
 
-# Refresher slide: Relationship of cyclic granularities
+# Relationship of cyclic granularities
 
 .pull-left[
 **<span style="color:firebrick"> <i> Clashes</i>:** pairs leading to empty sets
@@ -150,75 +141,72 @@ class:left, top
 
 Still too many harmonies for display for large $N_C$
 ---
-class: top left 
-
-# Rank them up! Most to least interesting
+# Selecting harmonies with significant variation
 
 .pull-left[
-```{r question1, out.width="100%"}
+```{r question1, out.width="200%"}
 ```
 ]
 
 .pull-right[
-```{r question2, out.width="100%"}
-```
-]
-
-```{r countdown}
-
-```
-
-
+- significant differences between categories: <br> (a) no (b) yes
+- Gestalt theory
+- efficiently capture within and between group variation 
+- compute threshold
+ ]
 ---
-class: top left 
-
-# Ranking rationale?
+# Rank selected harmonies <br> Median Maximum Pairwise Distance (MMPD)
 
 .pull-left[
-```{r question3, out.width="100%"}
+```{r questioncric}
+
 ```
+]
+.pull-right[
+- rank harmonies (b) > (a)
+- distances between probability distribution through Jensen-Shannon divergences
+- normalizing constants through Fisher–Tippett–Gnedenko theorem
+]
+---
+R package `gravitas`
+
+.pull-left[
+.animated.bounce[
+<img src="images/gravitas_sticker.png" height=280px>
+]
 ]
 
 .pull-right[
-```{r question4, out.width="100%"}
-```
+* construction of cyclic granularities and cyclic calendar algebra 
+* check feasibility through harmony/clash
+* select significant harmonies and rank them
+* recommend prospective probability distributions 
 ]
+---
+class: top left
 
-```{r countdown2}
+
+## An example : Electricity smart meter data
+
+<i><small>Data source</i></small> : [<small><i>Department of the Environment and Energy, Australia</i></small>](https://data.gov.au/dataset/4e21dea3-9b87-4610-94c7-15a8a77907ef)
+
+```{r read}
 ```
-
-
 ---
 
-# Formulating ideas 
+# Cyclic granularities considered for analysis
 
-## What did you look at?
+```{r search_gran}
+```
+<br>
+<br> 
 
- * Gestalt theory
- * within group variation?  (**maximum pairwise dissimilarity ordered/unordered** across x-axis labels)
- * between group variation? (highest **average** within group variation over facets)
- * higher number of levels? (choosing **normalization**)
- * Are the variations "significant" enough to be interesting? (choosing **threshold**)
+# Number of displays to analyze for exhaustive exploration
 
+There are $^{7}P_2 = 42$ pair of granularities to look at placing one on the x-axis and the other on facet.
 ---
-class: top left
 
-# Median Maximum Pairwise Distance (MMPD)
-
-$$\frac{median_{k \in \{1, 2, \ldots, K\}}(\operatorname*{max}_{s, t \in \{1, 2, \ldots, L\}}(\frac{JSD(p_s, p_t) - a_k}{b_k})}{log(K)}$$
-
-- JSD is the Jensen-Shannon distances between probability distribution $p_s$
-and $p_t$ of the $s^{th}$ and $t^{th}$ x-axis category 
-- $a_k$ and $b_k$ are
-the normalizing constants for the maximum pairwise distance of the $k^{th}$ facet category
-- The thresholds are chosen using ordered permutation tests.
-
-
----
-class: top left
-
-
-# Results: Highest to lowest MMPD
+# Results: Select only harmonies (16 out of 42 selected)
 
 ```{r rank harmony}
 
@@ -227,18 +215,8 @@ class: top left
 ---
 class: top left
 
-
-# Results: Highest to lowest MMPD
-
-```{r ranking disclosed, out.width="90%"}
-
-```
-
----
-class: top left
-
-
-# Results: Highest to lowest MMPD
+# Results: Select significant harmonies and rank them <br>
+(only 4 out of 16 selected)
 
 ```{r threshold, out.width="100%"}
 
@@ -248,11 +226,11 @@ class: top left
 class: top left
 
 
-# Results: Highest to lowest MMPD
+# Results: Recommended plots for selected harmonies
 
-```{r normalization, out.width="100%"}
+ Many levels - quantile plot selected
+ Lower levels - boxplot selected
 
-```
 ---
 class: middle center
 
