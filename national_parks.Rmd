@@ -1,0 +1,88 @@
+---
+title: "National Parks"
+author: "Sayani Gupta"
+date: "12/10/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(readr)
+library(tidyverse)
+library(visdat)
+library(tsibble)
+```
+
+```{r get_data}
+park_visits <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-09-17/national_parks.csv")
+state_pop <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-09-17/state_pop.csv")
+gas_price <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-09-17/gas_price.csv")
+```
+
+
+```{r vis_dat}
+park_visits %>%
+  vis_dat()
+
+# very few missing
+park_visits %>%
+  vis_miss()
+
+
+state_pop %>%
+  vis_dat()
+
+
+state_pop %>%
+  vis_miss()
+
+gas_price%>%
+  vis_dat()
+
+gas_price %>%
+  vis_miss()
+
+
+```
+
+
+```{r}
+# park_visits_ts <- park_visits %>%
+#   mutate(year = as.numeric(year)) %>%
+#   as_tsibble(index = year, key = c(parkname,
+#                                    unit_code,
+#                                    unit_name,
+#                                    unit_type))
+
+park_visits_ts <- park_visits %>%
+  mutate(year = as.factor(year)) %>% 
+  arrange(year)
+
+park_visits_ts %>% 
+  group_by(year) %>% 
+  summarise(tot_visitors = sum(visitors)) %>% 
+  ggplot(aes(x = year, y = tot_visitors)) +
+  geom_point()
+
+park_visits_ts %>% distinct(parkname)
+
+
+top10 <- park_visits_ts %>% 
+  filter(!is.na(parkname)) %>% 
+  group_by(parkname) %>% 
+  summarise(tot_visitors = sum(visitors)) %>% 
+  arrange(desc(tot_visitors)) %>% 
+  head(10) %>% 
+  pull(parkname)
+
+park_visits_ts %>% 
+  filter(parkname %in% top10) %>% 
+  group_by(year, parkname) %>% 
+  summarise(tot_visitors = sum(visitors)) %>% 
+  filter(tot_visitors <= 2e08) %>% 
+  ggplot(aes(x = year, y = tot_visitors, color = parkname)) +
+  geom_line(aes(group = parkname))
+  
+
+```
+
